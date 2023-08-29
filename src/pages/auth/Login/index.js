@@ -53,13 +53,6 @@ const Login = ({signInWithGoogle, gLoading, signInWithFacebook, fbLoading}) => {
                 changeError[name] = ''
             }
         }
-        if (name === "email") {
-            if (formData[name] !== "" && inValidEmail(formData[name])) {
-                changeError[name] = "¡El ID de correo electrónico no es válido!"
-            } else {
-            delete changeError[name];
-            }
-        } 
         setFormErrors({ ...changeError });
     };
 
