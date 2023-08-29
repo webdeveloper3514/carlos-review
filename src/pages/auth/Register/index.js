@@ -1,17 +1,17 @@
-import {Button, Form, notification} from "antd";
-import React, {useState} from "react";
-import {Link, Navigate} from "react-router-dom";
+import { Button, Form, notification } from "antd";
+import React, { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import RegistrationForm from "./RegistrationForm";
 import "../style.scss";
 import artwork from "../../../assets/images/artwork.svg";
 import TermsConditionModal from "../../../Components/Modal/TermsConditionModal";
-import {createUserWithEmailAndPassword} from "firebase/auth";
-import {GoogleOutlined, FacebookFilled} from "@ant-design/icons";
-import {emptyField, inValidEmail} from "../../../config/common";
-import {Auth} from "../../../firebase/config";
-import {CONSTANT_ROUTES} from "../../../config";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { GoogleOutlined, FacebookFilled } from "@ant-design/icons";
+import { emptyField, inValidEmail } from "../../../config/common";
+import { Auth } from "../../../firebase/config";
+import { CONSTANT_ROUTES } from "../../../config";
 
-const Register = ({signInWithGoogle, gLoading, signInWithFacebook, fbLoading}) => {
+const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) => {
     //signup form state
     const [formData, setFormData] = useState({
         name: "",
@@ -39,23 +39,23 @@ const Register = ({signInWithGoogle, gLoading, signInWithFacebook, fbLoading}) =
 
     //handle form input change
     const handleFormChange = (e, name) => {
-        let changedField = {...formData};
+        let changedField = { ...formData };
         const value = e.target.value;
         changedField[name] = value;
-        setFormData({...changedField});
-        let changeError = {...formErrors};
+        setFormData({ ...changedField });
+        let changeError = { ...formErrors };
         delete changeError[name];
-        setFormErrors({...changeError});
+        setFormErrors({ ...changeError });
 
         if (name === "email") {
             if (value !== "") {
                 changeError[name] = inValidEmail(value)
-                ? "¡El ID de correo electrónico no es válido!"
-                : "";
+                    ? "¡El ID de correo electrónico no es válido!"
+                    : "";
             } else {
                 delete changeError[name];
             }
-            setFormErrors({...changeError});
+            setFormErrors({ ...changeError });
         } else if (name === "password") {
             setPassValidate({
                 lengthValid: value.length >= 8,
@@ -70,33 +70,33 @@ const Register = ({signInWithGoogle, gLoading, signInWithFacebook, fbLoading}) =
 
     const handleValidPassword = (e, name, changedField) => {
         let value = e.target.value;
-        let changeError = {...formErrors};
+        let changeError = { ...formErrors };
         const isFormValid = Object.values(passValidate).every((value) => value);
 
         if (value !== "" && !isFormValid) {
-        changeError[name] = "¡La contraseña no es válida!";
+            changeError[name] = "¡La contraseña no es válida!";
         } else {
-        delete changeError[name];
+            delete changeError[name];
         }
-        setFormErrors({...changeError});
+        setFormErrors({ ...changeError });
     };
 
     //handle input blur function
     const handleInputBlur = (name, title, mandatory = true) => {
-        let changeError = {...formErrors};
+        let changeError = { ...formErrors };
         if (mandatory) {
-        if (formData[name] === "") {
-            changeError[name] = name === "email" ? title : `¡Se requiere ${title}`;
-        } else {
-            if (name === "password") {
-                const isFormValid = Object.values(passValidate).every((value) => value);
-                changeError[name] = isFormValid ? "" : "¡La contraseña no es válida!";
+            if (formData[name] === "") {
+                changeError[name] = name === "email" ? title : `¡Se requiere ${title}`;
             } else {
-                changeError[name] = "";
+                if (name === "password") {
+                    const isFormValid = Object.values(passValidate).every((value) => value);
+                    changeError[name] = isFormValid ? "" : "¡La contraseña no es válida!";
+                } else {
+                    changeError[name] = "";
+                }
             }
         }
-        }
-        setFormErrors({...changeError});
+        setFormErrors({ ...changeError });
     };
 
     const dispatchAction = (action) => {
@@ -124,7 +124,7 @@ const Register = ({signInWithGoogle, gLoading, signInWithFacebook, fbLoading}) =
             errors.password = "¡Se requiere contraseña!";
         }
 
-        setFormErrors({...errors});
+        setFormErrors({ ...errors });
         switch (action) {
             case "submit":
                 if (Object.keys(errors).length === 0) {
@@ -135,13 +135,13 @@ const Register = ({signInWithGoogle, gLoading, signInWithFacebook, fbLoading}) =
                         formData.password
                     ).then((userCredential) => {
                         setIsLoading(false);
-                        notification.success({description: "Inicio de sesión correcto...",});
+                        notification.success({ description: "Inicio de sesión correcto...", });
                         <Navigate replace to={CONSTANT_ROUTES.user.login} />;
                     })
-                    .catch((error) => {
-                        setIsLoading(false);
-                        notification.error({description: error.message});
-                    });
+                        .catch((error) => {
+                            setIsLoading(false);
+                            notification.error({ description: error.message });
+                        });
                 }
                 break;
             default:
@@ -151,77 +151,77 @@ const Register = ({signInWithGoogle, gLoading, signInWithFacebook, fbLoading}) =
 
     return (
         <>
-        <div className="auth-section register-page">
-            <div className="auth-left">
-                <img src={artwork} alt="artwork" />
-            </div>
-            <div className="auth-right">    
-                <div className="header">
-                    <h1>¡Bienvenido a Saikit!</h1>
-                    <div className="already-user">
-                        <p>¿Ya tienes una cuenta? </p> <Link to="/login">Inicia sesión</Link>
-                    </div>
+            <div className="auth-section register-page">
+                <div className="auth-left">
+                    <img src={artwork} alt="artwork" />
                 </div>
-                <div className="form">
-                    <RegistrationForm
-                        data={formData}
-                        error={formErrors}
-                        handleChange={handleFormChange}
-                        passValidate={passValidate}
-                        handleBlur={handleInputBlur}
-                    />
-                    <div className="action-field">
-                        <Form.Item>
-                            <Button
-                                type="primary"
-                                htmlType="submit"
-                                onClick={() => dispatchAction("submit")}
-                                loading={isLoading}
-                            >
-                                Regístrate
-                            </Button>
-                        </Form.Item>
+                <div className="auth-right">
+                    <div className="header">
+                        <h1>¡Bienvenido a Saikit!</h1>
+                        <div className="already-user">
+                            <p>¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link></p>
+                        </div>
                     </div>
-                    <div className="term-condition">
-                        <span>
-                            Al dar click en “Registrarme” estás aceptando nuestra políticade
-                            <span className="info" onClick={() => setTermModal(true)}>
-                                términos y condiciones
+                    <div className="form">
+                        <RegistrationForm
+                            data={formData}
+                            error={formErrors}
+                            handleChange={handleFormChange}
+                            passValidate={passValidate}
+                            handleBlur={handleInputBlur}
+                        />
+                        <div className="action-field">
+                            <Form.Item>
+                                <Button
+                                    type="primary"
+                                    htmlType="submit"
+                                    onClick={() => dispatchAction("submit")}
+                                    loading={isLoading}
+                                >
+                                    Regístrate
+                                </Button>
+                            </Form.Item>
+                        </div>
+                        <div className="term-condition">
+                            <span>
+                                Al dar click en “Registrarme” estás aceptando nuestra políticade
+                                <span className="info" onClick={() => setTermModal(true)}>
+                                    términos y condiciones
+                                </span>
                             </span>
-                        </span>
-                    </div>
-                    <div className="another-login-option">
-                        <span>O ingresa rápido con tus cuentas</span>
-                        <div className="another-options">
-                            <div className="facebook">
-                                <Button
-                                    className=""
-                                    onClick={signInWithFacebook}
-                                    loading={fbLoading}
-                                >
-                                    <FacebookFilled /> Ingresar con Facebook
-                                </Button>
-                            </div>
-                            <div className="google">
-                                <Button
-                                    className=""
-                                    onClick={signInWithGoogle}
-                                    loading={gLoading}
-                                >
-                                    <GoogleOutlined /> Ingresar con Gmail
-                                </Button>
+                        </div>
+                        <div className="another-login-option">
+                            <span>O ingresa rápido con tus cuentas</span>
+                            <div className="another-options">
+                                <div className="facebook">
+                                    <Button
+                                        className=""
+                                        onClick={signInWithFacebook}
+                                        loading={fbLoading}
+                                    >
+                                        <FacebookFilled /> Ingresar con Facebook
+                                    </Button>
+                                </div>
+                                <div className="google">
+                                    <Button
+                                        className=""
+                                        onClick={signInWithGoogle}
+                                        loading={gLoading}
+                                    >
+                                        <GoogleOutlined /> Ingresar con Gmail
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        {termModal && (
-            <TermsConditionModal 
-                state={termModal} 
-                setState={setTermModal} 
-            />
-        )}
+            {termModal && (
+                <TermsConditionModal
+                    state={termModal}
+                    setState={setTermModal}
+                />
+            )}
         </>
     );
 };
