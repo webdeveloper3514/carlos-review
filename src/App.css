@@ -1,38 +1,61 @@
-.App {
-  text-align: center;
+* {
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+    --primary_main: #5C30A1;
+    --primary_main_10: #5C30A11A;
+    --dark_grey : #292929;
+    --grey : #EDEDED;
+    --white : #FFFFFF;
+    --active_border : #0DC9C2;
+    --active_border_15 : #0DC9C226;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.ant-btn-default{
+    background-color: var(--primary_main);
+    color: var(--white);
+    box-shadow: 0px 9px 20px -8px #5C30A1;
+    border-color: var(--primary_main);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover{
+    background-color: #533386;
+    box-shadow: none;
+    color: white;
+    border-color: #533386;
+
 }
 
-.App-link {
-  color: #61dafb;
+
+p {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    color: var(--black_dark);
+    margin-top: 0;
+    margin-bottom: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input{
+    border-width: 2px solid var(--dark_grey);
+    border-radius: 10px;
+    padding: 9px, 16px !important;
 }
+
+input:hover{
+    border-color: var(--active_border);
+}
+
+.ant-input:hover{
+    border-color: var(--active_border);
+}
+.ant-input:focus{
+    border-color: var(--active_border);
+}
+
+.ant-form-item{
+    margin-bottom: 0px;
+} 

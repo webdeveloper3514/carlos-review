@@ -1,0 +1,14 @@
+.term-condition-modal{
+    width: 826px;
+    // height: 606px;
+
+    .ant-modal-content{
+        .ant-modal-body{
+            .modal-text{
+                height: 305px;
+                width: 756px;
+                overflow: scroll;
+            }
+        }
+    }
+}

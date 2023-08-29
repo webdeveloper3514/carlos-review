@@ -1,0 +1,182 @@
+.auth-section{
+    width: 1440px;
+    display: flex;
+    
+    &.login-page{
+        height: 1025px;
+        .auth-left{
+            height: 1025px;
+        }
+    }
+
+    &.register-page{
+        height: 1229px;
+        .auth-left{
+            height: 1229px;
+        }
+    }
+
+    .auth-left{
+        width: 679px;
+        background: hsla(250, 43%, 45%, 1);
+        background: linear-gradient(-90deg, hsla(250, 43%, 45%, 1) 0%, hsla(211, 51%, 45%, 1) 51%, hsla(189, 70%, 43%, 1) 76%, hsla(178, 67%, 48%, 1) 100%);
+        background: -moz-linear-gradient(-90deg, hsla(250, 43%, 45%, 1) 0%, hsla(211, 51%, 45%, 1) 51%, hsla(189, 70%, 43%, 1) 76%, hsla(178, 67%, 48%, 1) 100%);
+        background: -webkit-linear-gradient(-90deg, hsla(250, 43%, 45%, 1) 0%, hsla(211, 51%, 45%, 1) 51%, hsla(189, 70%, 43%, 1) 76%, hsla(178, 67%, 48%, 1) 100%);
+        img{
+            position: relative;
+            width: 100%;
+            object-fit: scale-down;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    }
+
+    .auth-right{
+        width: calc(100% - 679px);
+        padding-left: 56px;
+        padding-top: 105px;
+
+        .header{
+            width: 489px;
+            height: 97px;
+            h1{
+                font-size: 45px;
+                font-weight: 600;
+                line-height: 60%;
+            }
+
+            .already-user{
+                width: 100%;
+                height: 22px;
+                display: flex;
+                align-items: center;
+                
+                p{
+                    font-size: 14px;
+                    line-height: 18px;
+                    font-weight: 400;
+                    padding-right: 5px;
+                    margin: 0px;
+                }
+                a{
+                    font-size: 14px;
+                    line-height: 22px;
+                    font-weight: 400;
+                    color: #5C30A1;
+                }
+            }
+
+
+        }
+
+        .form{
+        width: 470px;
+        height: 100%;
+
+        .double-col-field{
+            display: flex;
+            gap: 20px;
+            
+            .field{
+                width: 225px;
+            }
+        }
+
+        .field{
+            height: 75px;
+            span{
+                .info{
+                    color: #5C30A1;
+                }
+            }
+        }
+
+        .password-condition{
+            width: 100%;
+            height: 90px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+
+            .condition{
+                display: flex;
+                gap: 8px;
+                width: 208px;
+                font-size: 14px;
+                line-height: 19px;
+                font-weight: 400;
+
+                &.complete{
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .action-field{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 15px;
+
+            button{
+                background-color: #5C30A1;
+                text-align: center;
+                width: 382px;
+                height: 48px;
+                border: 10px;
+                margin-bottom: 15px;
+                box-shadow: 0px 9px 20px -8px #5C30A1;
+
+                &:hover{
+                    box-shadow: none;
+                    background-color: #533386;
+                }
+            }
+
+        }
+
+        .term-condition{
+            width: 100% ;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            span{
+                width: 358px;
+                height: 44px;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 22px;
+                text-align: center;
+                padding: 5px;
+
+                .info{
+                    font-weight: 700;
+                    color: #5C30A1;
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .another-login-option{
+            padding-top: 15px;
+            border-top: 1px solid #D9D9D959;
+
+            .another-options{
+                display: flex;
+                gap: 15px;
+                padding-top: 15px;
+            }
+        }
+
+        .remember-me{
+            display: flex;
+            justify-content: space-between
+        }
+        }
+    }
+
+}
