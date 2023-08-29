@@ -47,7 +47,7 @@ const RegistrationForm = ({ handleChange, data, error, passValidate, handleBlur 
                 >
                     <span className="note-text">
                         Ingresa tu correo universitario para aumentar tu{" "}
-                        <Link className="info">nivel de verificación</Link>
+                        <Link className="info" style={{textDecoration:'none', cursor:'auto'}}>nivel de verificación</Link>
                     </span>
                     <Input
                         type="email"
