@@ -45,21 +45,21 @@ const Login = ({signInWithGoogle, gLoading, signInWithFacebook, fbLoading}) => {
 
     //handle input blur function
     const handleInputBlur = (name, title, mandatory = true) => {
+        console.log(".....")
         let changeError = { ...formErrors };
-        if(mandatory) {
+        if (name === "email") {
+            if (formData[name] !== "") {
+                changeError[name] = "¡El ID de correo electrónico no es válido!"
+            } else {
+            delete changeError[name];
+            }
+        } else if(mandatory) {
             if (formData[name] === "") {
                 changeError[name] = `¡Se requiere ${title}`;
             }else{
                 changeError[name] = ''
             }
         }
-        if (name === "email") {
-            if (formData[name] !== "" && inValidEmail(formData[name])) {
-                changeError[name] = "¡El ID de correo electrónico no es válido!"
-            } else {
-            delete changeError[name];
-            }
-        } 
         setFormErrors({ ...changeError });
     };
 
