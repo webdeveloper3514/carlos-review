@@ -1,7 +1,8 @@
-import {Checkbox, Form, Input} from "antd";
+import { Checkbox, Form, Input } from "antd";
 import React from "react";
+import { Link } from "react-router-dom";
 
-const RegistrationForm = ({handleChange, data, error, passValidate, handleBlur}) => {
+const RegistrationForm = ({ handleChange, data, error, passValidate, handleBlur }) => {
     return (
         <Form className="auth-form" layout="vertical" name="register-form">
             <div className="double-col-field">
@@ -38,15 +39,15 @@ const RegistrationForm = ({handleChange, data, error, passValidate, handleBlur})
                     </Form.Item>
                 </div>
             </div>
-            <div className="field" style={{height: "104px"}}>
+            <div className="field">
                 <Form.Item
                     label="Correo electrónico"
                     validateStatus={error?.email ? "error" : ""}
                     help={error?.email || ""}
                 >
-                    <span>
+                    <span className="note-text">
                         Ingresa tu correo universitario para aumentar tu{" "}
-                        <span className="info">nivel de verificación</span>
+                        <Link className="info">nivel de verificación</Link>
                     </span>
                     <Input
                         type="email"
