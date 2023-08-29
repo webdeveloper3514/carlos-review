@@ -7,7 +7,7 @@ const LoginForm = ({data, error, handleChange, handleBlur}) => {
         <Form className="auth-form" layout="vertical" name="register-form">
             <div className="field">
                 <Form.Item
-                    label="Correo electrónico"
+                    label="Correo o usuario"
                     validateStatus={error?.email ? "error" : ""}
                     help={error?.email || ""}
                 >
