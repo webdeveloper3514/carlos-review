@@ -10,6 +10,7 @@ import Profile from "../../pages/profile";
 import {useDispatch, useSelector} from "react-redux";
 import {LOGIN_USER} from "../../reducers/types";
 import ForgotPassword from "../../pages/auth/ForgotPassword";
+import VerifyEmail from "../../pages/auth/Register/VerifyEmail";
 
 const RouteList = () => {
     const auth = useSelector((state) => state.auth);
@@ -25,7 +26,7 @@ const RouteList = () => {
         setGLoading(true);
         signInWithPopup(Auth, GProvider)
         .then((result) => {
-            notification.success({description: "Login Successful..."});
+            notification.success({description: "Inicio de sesión correcto..."});
             dispatch({
                 type: LOGIN_USER,
                 payload: {
@@ -50,7 +51,7 @@ const RouteList = () => {
         setFbLoading(true);
         signInWithPopup(Auth, fbProvider)
         .then((result) => {
-            notification.success({description: "Login Successful..."});
+            notification.success({description: "Inicio de sesión correcto..."});
             dispatch({
                 type: LOGIN_USER,
                 payload: {
@@ -74,6 +75,7 @@ const RouteList = () => {
             <Route path={CONSTANT_ROUTES.user.common} element={<Login signInWithGoogle={signInWithGoogle} gLoading={gLoading} signInWithFacebook={signInWithFacebook} fbLoading={fbLoading} /> } />
             <Route path={CONSTANT_ROUTES.user.login} element={<Login signInWithGoogle={signInWithGoogle}  gLoading={gLoading} signInWithFacebook={signInWithFacebook} fbLoading={fbLoading} /> } />
             <Route  exact path={CONSTANT_ROUTES.user.register} element={<Register signInWithGoogle={signInWithGoogle} gLoading={gLoading}signInWithFacebook={signInWithFacebook}  fbLoading={fbLoading} /> } />
+            <Route  exact path={CONSTANT_ROUTES.user.verifyEmail} element={<VerifyEmail /> } />
             <Route exact path={CONSTANT_ROUTES.user.forgotPassword} element={<ForgotPassword />} />
             <Route exact path={CONSTANT_ROUTES.user.profile} element={
                 auth?.token ? (

@@ -4,7 +4,6 @@ import "../style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import { Button, Form, notification } from "antd";
-import { FacebookFilled, GoogleOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { CONSTANT_ROUTES } from "../../../config";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -79,24 +78,24 @@ const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) =>
                         formData.email,
                         formData.password
                     )
-                        .then((result) => {
-                            notification.success({ description: "Inicio de sesión correcto...", });
-                            dispatch({
-                                type: LOGIN_USER,
-                                payload: {
-                                    token: result?.user?.accessToken,
-                                    name: result?.user?.displayName?.split(" ")[0],
-                                    lastName: result?.user?.displayName?.navigatesplit(" ")[1],
-                                    email: result?.user?.email,
-                                    userName: result?.user?.displayName,
-                                },
-                            });
-                            setIsLoading(false);
-                        })
-                        .catch((error) => {
-                            setIsLoading(false);
-                            notification.error({ description: error.message });
+                    .then((result) => {
+                                                notification.success({ description: "Inicio de sesión correcto...", });
+                        dispatch({
+                            type: LOGIN_USER,
+                            payload: {
+                                token: result?.user?.accessToken,
+                                name: result?.user?.displayName?.split(" ")[0],
+                                lastName: result?.user?.displayName?.navigatesplit(" ")[1],
+                                email: result?.user?.email,
+                                userName: result?.user?.displayName,
+                            },
                         });
+                        setIsLoading(false);
+                    })
+                    .catch((error) => {
+                        setIsLoading(false);
+                        notification.error({ description: error.message });
+                    });
                 }
                 break;
             default:
