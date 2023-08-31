@@ -11,7 +11,7 @@ import { PATH_LIST } from "../../../config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Auth } from "../../../firebase/config";
 import { emptyField, inValidEmail } from "../../../config/common";
-import { LOGIN_USER } from "../../../reducers/types";
+import { loginUser } from "../../../actions/auth";
 
 const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) => {
     const auth = useSelector((state) => state.auth);
@@ -58,10 +58,6 @@ const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) =>
     };
 
     const dispatchAction = (action) => {
-        let payload = {
-            email: formData.email,
-            password: formData.password,
-        };
         let errors = {};
         if (emptyField(formData.email)) {
             errors.email = "¡correo electronico es requerido!";
@@ -82,17 +78,7 @@ const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) =>
                     )
                         .then((result) => {
                             notification.success({ description: "Inicio de sesión correcto...", });
-                            dispatch({
-                                type: LOGIN_USER,
-                                payload: {
-                                    token: result?.user?.accessToken,
-                                    name: result?.user?.displayName?.split(" ")[0],
-                                    lastName: result?.user?.displayName?.navigatesplit(" ")[1],
-                                    email: result?.user?.email,
-                                    userName: result?.user?.displayName,
-                                    emailVerified : result?.user?.emailVerified,
-                                },
-                            });
+                            dispatch(loginUser(result));
                             setIsLoading(false);
                         })
                         .catch((error) => {

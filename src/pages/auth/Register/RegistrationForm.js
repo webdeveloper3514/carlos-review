@@ -18,7 +18,6 @@ const RegistrationForm = ({ handleChange, data, error, passValidate, handleBlur 
                             value={data.name}
                             onChange={(e) => handleChange(e, "name")}
                             onBlur={() => handleBlur("name", "el nombre!")}
-                            autoComplete="off"
                         />
                     </Form.Item>
                 </div>
@@ -34,7 +33,6 @@ const RegistrationForm = ({ handleChange, data, error, passValidate, handleBlur 
                             value={data.lastName}
                             onChange={(e) => handleChange(e, "lastName")}
                             onBlur={() => handleBlur("lastName", "apellido!")}
-                            autoComplete="off"
                         />
                     </Form.Item>
                 </div>
@@ -55,7 +53,6 @@ const RegistrationForm = ({ handleChange, data, error, passValidate, handleBlur 
                         value={data.email}
                         onChange={(e) => handleChange(e, "email")}
                         onBlur={() => handleBlur("email", "¡correo electronico es requerido!")}
-                        autoComplete="off"
                     />
                 </Form.Item>
             </div>
@@ -71,7 +68,6 @@ const RegistrationForm = ({ handleChange, data, error, passValidate, handleBlur 
                         value={data.userName}
                         onChange={(e) => handleChange(e, "userName")}
                         onBlur={() => handleBlur("userName", "nombre de usuario!")}
-                        autoComplete="off"
                     />
                 </Form.Item>
             </div>

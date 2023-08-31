@@ -8,9 +8,9 @@ import {notification} from "antd";
 import {Auth} from "../../firebase/config";
 import Profile from "../../pages/profile";
 import {useDispatch, useSelector} from "react-redux";
-import {LOGIN_USER} from "../../reducers/types";
 import ForgotPassword from "../../pages/auth/ForgotPassword";
 import VerifyEmail from "../../pages/auth/Register/VerifyEmail";
+import { loginUser } from "../../actions/auth";
 
 const RouteList = () => {
     const auth = useSelector((state) => state.auth);
@@ -27,16 +27,7 @@ const RouteList = () => {
         signInWithPopup(Auth, GProvider)
         .then((result) => {
             notification.success({description: "Inicio de sesión correcto..."});
-            dispatch({
-                type: LOGIN_USER,
-                payload: {
-                    token: result.user.accessToken,
-                    name: result.user.displayName.split(" ")[0],
-                    lastName: result.user.displayName.split(" ")[1],
-                    email: result.user.email,
-                    userName: result.user.displayName,
-                },
-            });
+            dispatch(loginUser(result));
             navigate(PATH_LIST.user.profile);
             setGLoading(false);
         }).catch((error) => {
@@ -52,16 +43,7 @@ const RouteList = () => {
         signInWithPopup(Auth, fbProvider)
         .then((result) => {
             notification.success({description: "Inicio de sesión correcto..."});
-            dispatch({
-                type: LOGIN_USER,
-                payload: {
-                    token: result.user.accessToken,
-                    name: result.user.displayName.split(" ")[0],
-                    lastName: result.user.displayName.split(" ")[1],
-                    email: result.user.email,
-                    userName: result.user.displayName,
-                },
-            });
+            dispatch(dispatch(loginUser(result)));
             navigate(PATH_LIST.user.profile);
             setFbLoading(false);
         }).catch((error) => {

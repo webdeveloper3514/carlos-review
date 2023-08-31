@@ -1,6 +1,6 @@
 import { Button, Form, notification } from "antd";
 import React, { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RegistrationForm from "./RegistrationForm";
 import "../style.scss";
 import artwork from '../../../assets/images/artwork.svg'
@@ -67,13 +67,11 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
                 specialCharValid: /[./$&*#!]/.test(value),
                 uppercaseValid: /[A-Z]/.test(value),
             });
-            handleValidPassword(e, name, changedField);
+            handleValidPassword(e, name, value, changeError);
         }
     };
 
-    const handleValidPassword = (e, name, changedField) => {
-        let value = e.target.value;
-        let changeError = { ...formErrors };
+    const handleValidPassword = (e, name, value, changeError) => {
         const isFormValid = Object.values(passValidate).every((value) => value);
 
         if (value !== "" && !isFormValid) {
@@ -103,13 +101,6 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
     };
 
     const dispatchAction = (action) => {
-        let payload = {
-            name: formData.name,
-            lastName: formData.lastName,
-            email: formData.email,
-            userName: formData.userName,
-            password: formData.password,
-        };
         let errors = {};
         if (emptyField(formData.name)) {
             errors.name = "¡Se requiere el nombre!";
@@ -140,12 +131,11 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
                         setIsLoading(false);
                         notification.success({ description: "Registro exitoso. Enviando correo electrónico de verificación...", });
                         sendEmailVerify(userCredential)
-                        // <Navigate replace to={PATH_LIST.user.login} />;
                     })
-                        .catch((error) => {
-                            setIsLoading(false);
-                            notification.error({ description: error.message });
-                        });
+                    .catch((error) => {
+                        setIsLoading(false);
+                        notification.error({ description: error.message });
+                    });
                 }
                 break;
             default:
@@ -155,7 +145,7 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
 
     const sendEmailVerify = (userCredential) => {
         sendEmailVerification(userCredential.user)
-        notification.success({ description: "Verification email sent. Please check your inbox and follow the instructions." });
+        notification.success({ description: "El mensaje de verificación ha sido enviado. Por favor revisa tu bandeja de entrada y sigue las instrucciones." });
         navigate(PATH_LIST.user.verifyEmail)
 
     }
