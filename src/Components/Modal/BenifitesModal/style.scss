@@ -1,0 +1,75 @@
+.benifit-modal {
+    width: 826px;
+
+    .ant-modal-content {
+        .ant-modal-body {
+
+            .modal-text {
+                max-height: 60vh;
+                width: 100%;
+                overflow: auto;
+                scrollbar-width: thin;
+                scrollbar-color: #C4C4C4 #fff;
+
+                >* {
+                    padding-right: 5px;
+                }
+            }
+
+            h3 {
+                font-size: 24px;
+                padding-bottom: 15px;
+                margin-bottom: 0;
+                position: sticky;
+                top: 0;
+                background: #fff;
+                display: flex;
+                align-items: center;
+
+                &>.icon{
+                    margin-left: 15px;
+                }
+            }
+        }
+    }
+
+    .ant-modal-close {
+        position: static;
+        width: 100%;
+        justify-content: flex-end;
+        display: flex;
+        margin-bottom: 30px;
+        background-color: transparent;
+
+        &:hover {
+            color: rgba(0, 0, 0, 0.88);
+            background-color: transparent;
+        }
+    }
+
+    .ant-modal-close-x {
+        .ant-modal-close-icon {
+            width: 24px;
+            height: 24px;
+            line-height: 0;
+
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+
+    .ant-modal-footer {
+        text-align: start;
+        background: transparent;
+        margin-top: 25px;
+
+        button {
+            min-width: 258px;
+            padding: 12px 15px;
+        }
+    }
+
+}

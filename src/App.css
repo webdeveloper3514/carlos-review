@@ -253,6 +253,7 @@ label.ant-checkbox-wrapper {
     line-height: 158.687%;
     display: flex;
     align-items: center;
+    cursor: auto;
 }
 
 span.ant-checkbox .ant-checkbox-inner {

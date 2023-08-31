@@ -90,6 +90,7 @@ const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) =>
                                     lastName: result?.user?.displayName?.navigatesplit(" ")[1],
                                     email: result?.user?.email,
                                     userName: result?.user?.displayName,
+                                    emailVerified : result?.user?.emailVerified,
                                 },
                             });
                             setIsLoading(false);
