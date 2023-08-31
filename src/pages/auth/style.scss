@@ -21,7 +21,7 @@
         padding: 60px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
 
         .header {
 
@@ -50,7 +50,6 @@
                     line-height: 128.687%;
 
                     a {
-                        color: var(--primary_main);
                         font-size: 14px;
                         font-style: normal;
                         font-weight: 700;
@@ -147,6 +146,8 @@
 
                     &:hover {
                         box-shadow: none;
+                        background-color: rgba(92, 48, 161, 0.8);
+                        text-shadow: none
                     }
                 }
 
@@ -176,7 +177,7 @@
                         text-decoration: underline;
                         cursor: pointer;
 
-                        &:hover{
+                        &:hover {
                             color: var(--dark_grey);
                         }
                     }

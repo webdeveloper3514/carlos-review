@@ -42,6 +42,15 @@ p:last-child {
 }
 
 
+a {
+    color: var(--primary_main);
+}
+
+a:hover {
+    color: var(--dark_grey);
+}
+
+
 *::-webkit-input-placeholder {
     color: #BDBFC1;
     font-size: 14px;
@@ -98,7 +107,22 @@ p:last-child {
 }
 
 
+/*button*/
+button.ant-btn .ant-btn-loading-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-right: 0 !important;
+    height: 100%;
+    background: #eeeaf5bf;
+}
 
+/*button end*/
 
 /*form label*/
 .ant-form-item,
