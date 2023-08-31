@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import artwork from '../../../assets/images/artwork.svg'
-import tableartwork from '../../../assets/images/tableartwork.svg'
-import mobileartwork from '../../../assets/images/mobileartwork.svg'
 import "../style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import LoginForm from "./LoginForm";
@@ -10,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { PATH_LIST } from "../../../config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Auth } from "../../../firebase/config";
-import { emptyField, inValidEmail } from "../../../config/common";
+import { AuthLeft, emptyField, inValidEmail } from "../../../config/common";
 import { loginUser } from "../../../actions/auth";
 
 const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) => {
@@ -72,20 +69,16 @@ const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) =>
             case "login":
                 if (Object.keys(errors).length === 0) {
                     setIsLoading(true);
-                    signInWithEmailAndPassword(
-                        Auth,
-                        formData.email,
-                        formData.password
-                    )
-                        .then((result) => {
-                            notification.success({ description: "Inicio de sesión correcto...", });
-                            dispatch(loginUser(result));
-                            setIsLoading(false);
-                        })
-                        .catch((error) => {
-                            setIsLoading(false);
-                            notification.error({ description: error.message });
-                        });
+                    signInWithEmailAndPassword(Auth, formData.email, formData.password)
+                    .then((result) => {
+                        notification.success({ description: "Inicio de sesión correcto...", });
+                        dispatch(loginUser(result));
+                        setIsLoading(false);
+                    })
+                    .catch((error) => {
+                        setIsLoading(false);
+                        notification.error({ description: error.message });
+                    });
                 }
                 break;
             default:
@@ -101,12 +94,7 @@ const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) =>
 
     return (
         <div className="auth-section login-page">
-            <div className="auth-left">
-                <img className='desktop-arc' src={artwork} alt="artwork" />
-                <img className='table-arc' src={tableartwork} alt="tabletartwork" />
-                <img className='mobile-arc' src={mobileartwork} alt="mobileartwork" />
-            </div>
-
+            <AuthLeft />
             <div className="auth-right">
                 <div className='fixed-width'>
                     <div className="header">

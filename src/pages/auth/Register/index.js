@@ -3,13 +3,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import RegistrationForm from "./RegistrationForm";
 import "../style.scss";
-import artwork from '../../../assets/images/artwork.svg'
-import tableartwork from '../../../assets/images/tableartwork.svg'
-import mobileartwork from '../../../assets/images/mobileartwork.svg'
 import TermsConditionModal from "../../../Components/Modal/TermsConditionModal";
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { GoogleOutlined, FacebookFilled } from "@ant-design/icons";
-import { emptyField, inValidEmail } from "../../../config/common";
+import { AuthLeft, emptyField, inValidEmail } from "../../../config/common";
 import { Auth } from "../../../firebase/config";
 import { PATH_LIST } from "../../../config";
 
@@ -153,11 +150,7 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
     return (
         <>
             <div className="auth-section register-page">
-                <div className="auth-left">
-                    <img className='desktop-arc' src={artwork} alt="artwork" />
-                    <img className='table-arc' src={tableartwork} alt="tabletartwork" />
-                    <img className='mobile-arc' src={mobileartwork} alt="mobileartwork" />
-                </div>
+                <AuthLeft />
                 <div className="auth-right">
                     <div className='fixed-width'>
                         <div className="header">

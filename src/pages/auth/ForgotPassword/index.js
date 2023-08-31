@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
-import artwork from '../../../assets/images/artwork.svg'
-import tableartwork from '../../../assets/images/tableartwork.svg'
-import mobileartwork from '../../../assets/images/mobileartwork.svg'
-import { Link } from 'react-router-dom'
 import { Button, Form, Input, notification } from 'antd'
 import { sendPasswordResetEmail } from 'firebase/auth'
 import { Auth } from '../../../firebase/config'
-import { LeftOutlined } from '@ant-design/icons'
+import { AuthLeft, BackButton } from '../../../config/common'
+import { PATH_LIST } from '../../../config'
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState("")
@@ -48,24 +45,10 @@ const ForgotPassword = () => {
 
     return (
         <div className="auth-section forgot-password-page">
-            <div className="auth-left">
-                <img className='desktop-arc' src={artwork} alt="artwork" />
-                <img className='table-arc' src={tableartwork} alt="tabletartwork" />
-                <img className='mobile-arc' src={mobileartwork} alt="mobileartwork" />
-            </div>
+            <AuthLeft />
             <div className="auth-right">
                 <div className='fixed-width'>
-                    <div className="back">
-                        <Link to="/login">
-                            <span className='icon'>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M12 16.1924L5.9038 10.0962L12 4" stroke="#5A5A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
-                            Regresar
-                        </Link>
-                    </div>
-
+                    <BackButton route={PATH_LIST.user.login} />
                     <div className="header">
                         {
                             !isEmailSend ?

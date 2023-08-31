@@ -1,16 +1,14 @@
 import { sendEmailVerification } from 'firebase/auth';
 import { useState, useEffect } from 'react';
 import { Auth } from '../../../firebase/config';
-import artwork from '../../../assets/images/artwork.svg'
-import tableartwork from '../../../assets/images/tableartwork.svg'
-import mobileartwork from '../../../assets/images/mobileartwork.svg'
 import { Link, useNavigate } from 'react-router-dom';
 import { PATH_LIST } from '../../../config';
 import { Button, Form } from 'antd';
 import BenifitesModal from '../../../Components/Modal/BenifitesModal';
+import { AuthLeft, BackButton } from '../../../config/common';
 
 const VerifyEmail = () => {
-    const [countdown, setCountdown] = useState(600); // 10 minutes in seconds
+    const [countdown, setCountdown] = useState(600);
     const [isResendDisabled, setIsResendDisabled] = useState(false);
     const [benifitModal, setBenifitModal] = useState(false)
     const navigate = useNavigate()
@@ -37,27 +35,10 @@ const VerifyEmail = () => {
         }
     };
 
-    const [isEmailVerified, setIsEmailVerified] = useState(false); // Track email verification status
-
-    useEffect(() => {
-        const unsubscribe = Auth.onAuthStateChanged(user => {
-            if (user) {
-                setIsEmailVerified(user.emailVerified);
-            } else {
-                setIsEmailVerified(false);
-            }
-        });
-
-        return () => unsubscribe(); // Clean up the observer when component unmounts
-    }, []);
     return (
         <>
             <div className="auth-section verify-email-page">
-                <div className="auth-left">
-                    <img className='desktop-arc' src={artwork} alt="artwork" />
-                    <img className='table-arc' src={tableartwork} alt="tabletartwork" />
-                    <img className='mobile-arc' src={mobileartwork} alt="mobileartwork" />
-                </div>
+                <AuthLeft />
                 <div className="auth-right">
                     {
                         Auth.currentUser ?
@@ -95,16 +76,7 @@ const VerifyEmail = () => {
                                 </div>
                                 :
                                 <div className='fixed-width'>
-                                    <div className="back">
-                                        <Link to="/login">
-                                            <span className='icon'>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                                    <path d="M12 16.1924L5.9038 10.0962L12 4" stroke="#5A5A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
-                                            </span>
-                                            Regresar
-                                        </Link>
-                                    </div>
+                                    <BackButton route={PATH_LIST.user.login} />
                                     <div className="header">
                                         <h1>Verifica tu correo</h1>
                                     </div>

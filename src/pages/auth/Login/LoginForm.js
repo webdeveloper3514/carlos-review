@@ -1,6 +1,7 @@
 import React from 'react'
 import { Checkbox, Form, Input } from 'antd'
 import { Link } from 'react-router-dom'
+import { PATH_LIST } from '../../../config'
 
 const LoginForm = ({data, error, handleChange, handleBlur}) => {
     return (
@@ -17,7 +18,6 @@ const LoginForm = ({data, error, handleChange, handleBlur}) => {
                         value={data.email}
                         onChange={(e) => handleChange(e, "email")}
                         onBlur={() => handleBlur("email", "¡correo electronico es requerido!")}
-                        autoCapitalize='on'
                     />
                 </Form.Item>
             </div>
@@ -32,7 +32,6 @@ const LoginForm = ({data, error, handleChange, handleBlur}) => {
                         value={data.password}
                         onChange={(e) => handleChange(e, "password")}
                         onBlur={() => handleBlur("password", "contraseña!")}
-                        autoComplete="off"
                     />
                 </Form.Item>
             </div>
@@ -44,10 +43,9 @@ const LoginForm = ({data, error, handleChange, handleBlur}) => {
                     >
                         <Checkbox>Recuérdame</Checkbox>
                     </Form.Item>
-                    {/* <Checkbox /> */}
                 </div>
                 <div className="forgot-password">
-                    <Link to="/forgotPassword">Olvidé mi contraseña</Link>
+                    <Link to={PATH_LIST.user.forgotPassword}>Olvidé mi contraseña</Link>
                 </div>
             </div>
 

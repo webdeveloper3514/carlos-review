@@ -1,3 +1,8 @@
+import artwork from '../assets/images/artwork.svg'
+import tableartwork from '../assets/images/tableartwork.svg'
+import mobileartwork from '../assets/images/mobileartwork.svg'
+import { Link } from 'react-router-dom';
+
 //empty fields validation
 export function emptyField(text) {
 	if ((text && String(text)?.trim() !== "")) {
@@ -28,5 +33,30 @@ export const Icon = ()=>{
 				</defs>
 			</svg>
 		</span>
+	)
+}
+
+export const AuthLeft = ()=>{
+	return(
+		<div className="auth-left">
+			<img className='desktop-arc' src={artwork} alt="artwork" />
+			<img className='table-arc' src={tableartwork} alt="tabletartwork" />
+			<img className='mobile-arc' src={mobileartwork} alt="mobileartwork" />
+		</div>
+	)
+}
+
+export const BackButton = ({route})=>{
+	return(
+		<div className="back">
+			<Link to={route}>
+				<span className='icon'>
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+						<path d="M12 16.1924L5.9038 10.0962L12 4" stroke="#5A5A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+				</span>
+				Regresar
+			</Link>
+		</div>
 	)
 }
