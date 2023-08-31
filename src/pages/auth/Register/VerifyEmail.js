@@ -41,8 +41,8 @@ const VerifyEmail = () => {
             </div>
             <div className="auth-right">
                 {
-                    !Auth.currentUser ?
-                        !Auth?.currentUser?.emailVerified ?
+                    Auth.currentUser ?
+                        Auth?.currentUser?.emailVerified ?
                             <div className='fixed-width'>
                                 <div className='header'>
                                     <h1>
