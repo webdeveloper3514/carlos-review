@@ -1,4 +1,4 @@
-.term-condition-modal {
+.benifit-modal {
     width: 826px;
 
     .ant-modal-content {
@@ -23,6 +23,12 @@
                 position: sticky;
                 top: 0;
                 background: #fff;
+                display: flex;
+                align-items: center;
+
+                &>.icon{
+                    margin-left: 15px;
+                }
             }
         }
     }

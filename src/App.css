@@ -7,7 +7,7 @@
     --turquesa-turquesa: #0DC9C2;
     --active_border_15: #0DC9C226;
     --gray-gray-20: #D4D4D4;
-    --f24: 45px;
+    --f45: 45px;
 }
 
 * {
@@ -25,20 +25,32 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
     font-family: 'Rubik', sans-serif;
     font-weight: bold;
+    color: var(--dark_grey);
 }
 
 p {
     font-family: 'Rubik', sans-serif;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 140%;
-    color: var(--black_dark);
+    color: var(--dark_grey);
     margin-top: 0;
     margin-bottom: 15px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 162.7%;
 }
 
 p:last-child {
     margin-bottom: 0;
+}
+
+
+a {
+    color: var(--primary_main);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--dark_grey);
 }
 
 
@@ -65,19 +77,44 @@ p:last-child {
 }
 
 
+*::-webkit-scrollbar {
+    width: 5px;
+}
 
-.ant-btn-default {
+*::-webkit-scrollbar-thumb {
+    background-color: #C4C4C4;
+    border-radius: 10px;
+}
+
+
+
+.ant-btn-primary {
     background-color: var(--primary_main);
     color: var(--white);
     border-color: var(--primary_main);
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    font-family: Rubik;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 162.7%;
+    height: auto;
+    min-width: 140px;
+    box-shadow: 0px 9px 20px -8px var(--primary_main);
+    padding: 8px 15px;
+    transition: all 0.5s ease;
 }
 
-.ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
-    background-color: #533386;
+.ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
     box-shadow: none;
     color: white;
-    border-color: #533386;
+    border-color: rgba(92, 48, 161, 0.8);
+    background-color: rgba(92, 48, 161, 0.8);
+    text-shadow: none
+}
 
+.ant-btn-primary[disabled] {
+    text-shadow: none;
 }
 
 .note-text {
@@ -97,8 +134,54 @@ p:last-child {
     font-weight: 700;
 }
 
+/*back*/
+.back {
+    margin-bottom: 25px;
+    display: flex;
+}
+
+.back>a {
+    display: flex;
+    align-items: center;
+    font-family: Rubik;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 162.7%;
+}
+
+.back>a .icon {
+    width: 20px;
+    height: 20px;
+    line-height: 0;
+    margin-right: 10px;
+    position: relative;
+    transition: all 0.5s ease;
+    left: 0;
+}
+
+.back>a:hover .icon {
+    left: -4px;
+}
+
+/*back end*/
 
 
+/*button*/
+button.ant-btn .ant-btn-loading-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-right: 0 !important;
+    height: 100%;
+    background: #eeeaf5bf;
+}
+
+/*button end*/
 
 /*form label*/
 .ant-form-item,
@@ -170,6 +253,7 @@ label.ant-checkbox-wrapper {
     line-height: 158.687%;
     display: flex;
     align-items: center;
+    cursor: auto;
 }
 
 span.ant-checkbox .ant-checkbox-inner {
@@ -198,4 +282,28 @@ span.ant-checkbox .ant-checkbox-inner::after {
     height: 12.143px;
     top: 10px;
     left: 6px;
+}
+
+
+@media screen and (max-width:1200px) {
+    p {
+        font-size: 14px;
+    }
+
+    .ant-btn-primary {
+        font-size: 14px;
+    }
+
+    .back>a {
+        font-size: 14px;
+    }
+
+    span.ant-input-affix-wrapper {
+        font-size: 14px;
+    }
+
+    input.ant-input {
+        font-size: 14px;
+    }
+
 }

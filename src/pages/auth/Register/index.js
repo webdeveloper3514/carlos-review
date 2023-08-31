@@ -1,17 +1,20 @@
 import { Button, Form, notification } from "antd";
 import React, { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RegistrationForm from "./RegistrationForm";
 import "../style.scss";
-import artwork from "../../../assets/images/artwork.svg";
+import artwork from '../../../assets/images/artwork.svg'
+import tableartwork from '../../../assets/images/tableartwork.svg'
+import mobileartwork from '../../../assets/images/mobileartwork.svg'
 import TermsConditionModal from "../../../Components/Modal/TermsConditionModal";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { GoogleOutlined, FacebookFilled } from "@ant-design/icons";
 import { emptyField, inValidEmail } from "../../../config/common";
 import { Auth } from "../../../firebase/config";
-import { CONSTANT_ROUTES } from "../../../config";
+import { PATH_LIST } from "../../../config";
 
 const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) => {
+    const navigate = useNavigate()
     //signup form state
     const [formData, setFormData] = useState({
         name: "",
@@ -64,13 +67,11 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
                 specialCharValid: /[./$&*#!]/.test(value),
                 uppercaseValid: /[A-Z]/.test(value),
             });
-            handleValidPassword(e, name, changedField);
+            handleValidPassword(e, name, value, changeError);
         }
     };
 
-    const handleValidPassword = (e, name, changedField) => {
-        let value = e.target.value;
-        let changeError = { ...formErrors };
+    const handleValidPassword = (e, name, value, changeError) => {
         const isFormValid = Object.values(passValidate).every((value) => value);
 
         if (value !== "" && !isFormValid) {
@@ -100,13 +101,6 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
     };
 
     const dispatchAction = (action) => {
-        let payload = {
-            name: formData.name,
-            lastName: formData.lastName,
-            email: formData.email,
-            userName: formData.userName,
-            password: formData.password,
-        };
         let errors = {};
         if (emptyField(formData.name)) {
             errors.name = "¡Se requiere el nombre!";
@@ -135,13 +129,13 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
                         formData.password
                     ).then((userCredential) => {
                         setIsLoading(false);
-                        notification.success({ description: "Inicio de sesión correcto...", });
-                        <Navigate replace to={CONSTANT_ROUTES.user.login} />;
+                        notification.success({ description: "Registro exitoso. Enviando correo electrónico de verificación...", });
+                        sendEmailVerify(userCredential)
                     })
-                        .catch((error) => {
-                            setIsLoading(false);
-                            notification.error({ description: error.message });
-                        });
+                    .catch((error) => {
+                        setIsLoading(false);
+                        notification.error({ description: error.message });
+                    });
                 }
                 break;
             default:
@@ -149,17 +143,28 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
         }
     };
 
+    const sendEmailVerify = (userCredential) => {
+        sendEmailVerification(userCredential.user)
+        notification.success({ description: "El mensaje de verificación ha sido enviado. Por favor revisa tu bandeja de entrada y sigue las instrucciones." });
+        navigate(PATH_LIST.user.verifyEmail)
+
+    }
+
     return (
         <>
             <div className="auth-section register-page">
                 <div className="auth-left">
-                    <img src={artwork} alt="artwork" />
+                    <img className='desktop-arc' src={artwork} alt="artwork" />
+                    <img className='table-arc' src={tableartwork} alt="tabletartwork" />
+                    <img className='mobile-arc' src={mobileartwork} alt="mobileartwork" />
                 </div>
                 <div className="auth-right">
-                    <div className="header">
-                        <h1>¡Bienvenido a Saikit!</h1>
-                        <div className="already-user">
-                            <p>¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link></p>
+                    <div className='fixed-width'>
+                        <div className="header">
+                            <h1>¡Bienvenido a Saikit!</h1>
+                            <div className="already-user">
+                                <p>¿Ya tienes una cuenta? <Link to={PATH_LIST.user.login}>Inicia sesión</Link></p>
+                            </div>
                         </div>
                     </div>
                     <div className="form">

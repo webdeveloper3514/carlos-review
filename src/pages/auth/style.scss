@@ -9,11 +9,46 @@
         position: sticky;
         top: 0;
 
+        @media screen and (max-width:1200px) {
+            width: 100%;
+            height: auto;
+            position: static;
+        }
+
+
         >img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+
+            &.desktop-arc {
+                @media screen and (max-width:1200px) {
+                    display: none;
+                }
+            }
+
+            &.table-arc {
+                display: none;
+
+                @media screen and (max-width:1200px) {
+                    display: block;
+                }
+
+                @media screen and (max-width:767px) {
+                    display: none;
+                }
+            }
+
+            &.mobile-arc {
+                display: none;
+
+                @media screen and (max-width:767px) {
+                    display: block;
+                }
+            }
         }
+
+
     }
 
     .auth-right {
@@ -21,17 +56,47 @@
         padding: 60px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
+
+
+        @media screen and (max-width:1200px) {
+            width: 100%;
+            padding: 50px;
+        }
+
+        @media screen and (max-width:767px) {
+            padding: 25px;
+        }
+
+        h4 {
+            font-size: 20px;
+            font-weight: 600;
+
+            @media screen and (max-width:1200px) {
+                font-size: 18px;
+            }
+
+            @media screen and (max-width:767px) {
+                font-size: 16px;
+            }
+        }
 
         .header {
 
             h1 {
-                color: var(--dark_grey);
-                font-family: Rubik;
-                font-size: var(--f24);
+                font-size: 45px;
                 font-weight: 600;
-                line-height: 133.187%;
                 margin-bottom: 15px;
+
+                @media screen and (max-width:1200px) {
+                    text-align: center;
+                    margin-bottom: 20px;
+                    font-size: 36px;
+                }
+
+                @media screen and (max-width:767px) {
+                    font-size: 24px;
+                }
             }
 
             .already-user {
@@ -50,7 +115,6 @@
                     line-height: 128.687%;
 
                     a {
-                        color: var(--primary_main);
                         font-size: 14px;
                         font-style: normal;
                         font-weight: 700;
@@ -61,13 +125,37 @@
 
 
             }
+        }
 
+        .message {
+            >span {
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 158.687%;
+                padding-top: 15px;
+                display: block;
+            }
+        }
 
+        .fixed-width {
+            width: 470px;
+
+            @media screen and (max-width:1200px) {
+                max-width: 500px;
+                width: 100%;
+                margin: 0 auto;
+            }
         }
 
         .form {
             width: 470px;
             margin-top: 10%;
+
+            @media screen and (max-width:1200px) {
+                max-width: 500px;
+                width: 100%;
+                margin: 30px auto 0 auto;
+            }
 
             .double-col-field {
                 display: flex;
@@ -84,6 +172,7 @@
                 display: flex;
                 flex-wrap: wrap;
                 gap: 15px;
+                margin-bottom: 15px;
 
                 .condition {
                     display: flex;
@@ -125,28 +214,27 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                padding-top: 15px;
+                padding-top: 11px;
+
+                .ant-form-item {
+                    @media screen and (max-width:1200px) {
+                        width: 100%;
+                    }
+                }
 
                 button {
-                    background-color: var(--primary_main);
                     text-align: center;
                     width: 382px;
-                    border: 10px;
                     margin-bottom: 15px;
-                    box-shadow: 0px 9px 20px -8px var(--primary_main);
                     padding: 14px 18px;
                     height: 51px;
-                    color: #FFF;
-                    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-                    font-family: Rubik;
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 600;
-                    line-height: 162.7%;
-                    transition: all 0.5s ease;
 
-                    &:hover {
-                        box-shadow: none;
+                    @media screen and (max-width:1200px) {
+                        width: 100%;
+                    }
+
+                    @media screen and (max-width:767px) {
+                        height: 48px;
                     }
                 }
 
@@ -176,7 +264,7 @@
                         text-decoration: underline;
                         cursor: pointer;
 
-                        &:hover{
+                        &:hover {
                             color: var(--dark_grey);
                         }
                     }
@@ -200,6 +288,10 @@
                     line-height: 128.687%;
                     text-decoration-line: underline;
 
+                    @media screen and (max-width:1200px) {
+                        font-size: 12px;
+                    }
+
                     &:hover {
                         color: var(--dark_grey);
                     }
@@ -209,9 +301,17 @@
 
         .another-login-option {
             margin-top: 66px;
-            padding-top: 32px;
+            padding-top: 26px;
             border-top: 1px solid var(--gray-gray-20);
             max-width: 470px;
+
+            @media screen and (max-width:1200px) {
+                padding-top: 25px;
+                border-top: 1px solid var(--gray-gray-20);
+                max-width: 500px;
+                width: 100%;
+                margin: 25px auto 0px auto;
+            }
 
             >span {
                 color: var(--dark_grey);
@@ -225,7 +325,15 @@
             .another-options {
                 display: flex;
                 gap: 25px;
-                padding-top: 25px;
+                padding-top: 23px;
+
+                @media screen and (max-width:767px) {
+                    gap: 15px;
+
+                    >div {
+                        width: 100%;
+                    }
+                }
 
                 button {
                     border-radius: 6px;
@@ -253,9 +361,57 @@
                     &:hover {
                         background: rgba(92, 48, 161, 0.3);
                     }
+
+                    @media screen and (max-width:767px) {
+                        width: 100%;
+
+                        svg {
+                            display: none;
+                        }
+                    }
                 }
             }
         }
     }
 
+
+}
+
+.verify-email-page {
+    display: flex;
+    position: relative;
+
+    .auth-right {
+        justify-content: flex-start;
+
+        .back {
+            margin-top: 150px;
+        }
+
+        .header {
+            margin-top: 40px;
+        }
+
+        p>.icon{
+            position: relative;
+            top: 7px;
+            margin-left: 13px;
+            cursor: pointer;
+        }
+
+        .form {
+
+            .term-condition,
+            .action-field {
+                justify-content: flex-start;
+            }
+
+            .action-button {
+                button {
+                    min-width: 222px;
+                }
+            }
+        }
+
+    }
 }

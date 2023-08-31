@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import artwork from "../../../assets/images/artwork.svg";
+import artwork from '../../../assets/images/artwork.svg'
+import tableartwork from '../../../assets/images/tableartwork.svg'
+import mobileartwork from '../../../assets/images/mobileartwork.svg'
 import "../style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import { Button, Form, notification } from "antd";
-import { FacebookFilled, GoogleOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { CONSTANT_ROUTES } from "../../../config";
+import { PATH_LIST } from "../../../config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Auth } from "../../../firebase/config";
 import { emptyField, inValidEmail } from "../../../config/common";
-import { LOGIN_USER } from "../../../reducers/types";
+import { loginUser } from "../../../actions/auth";
 
 const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) => {
     const auth = useSelector((state) => state.auth);
@@ -58,10 +59,6 @@ const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) =>
     };
 
     const dispatchAction = (action) => {
-        let payload = {
-            email: formData.email,
-            password: formData.password,
-        };
         let errors = {};
         if (emptyField(formData.email)) {
             errors.email = "¡correo electronico es requerido!";
@@ -82,16 +79,7 @@ const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) =>
                     )
                         .then((result) => {
                             notification.success({ description: "Inicio de sesión correcto...", });
-                            dispatch({
-                                type: LOGIN_USER,
-                                payload: {
-                                    token: result?.user?.accessToken,
-                                    name: result?.user?.displayName?.split(" ")[0],
-                                    lastName: result?.user?.displayName?.navigatesplit(" ")[1],
-                                    email: result?.user?.email,
-                                    userName: result?.user?.displayName,
-                                },
-                            });
+                            dispatch(loginUser(result));
                             setIsLoading(false);
                         })
                         .catch((error) => {
@@ -107,21 +95,25 @@ const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) =>
 
     useEffect(() => {
         if (auth.token) {
-            navigate(CONSTANT_ROUTES.user.profile);
+            navigate(PATH_LIST.user.profile);
         }
     }, [auth]);
 
     return (
         <div className="auth-section login-page">
             <div className="auth-left">
-                <img src={artwork} alt="artwork" />
+                <img className='desktop-arc' src={artwork} alt="artwork" />
+                <img className='table-arc' src={tableartwork} alt="tabletartwork" />
+                <img className='mobile-arc' src={mobileartwork} alt="mobileartwork" />
             </div>
 
             <div className="auth-right">
-                <div className="header">
-                    <h1>¡Hola de nuevo!</h1>
-                    <div className="already-user">
-                        <p>¿Aún no tienes una cuenta? <Link to="/register">Regístrate</Link></p>
+                <div className='fixed-width'>
+                    <div className="header">
+                        <h1>¡Hola de nuevo!</h1>
+                        <div className="already-user">
+                            <p>¿Aún no tienes una cuenta? <Link to="/register">Regístrate</Link></p>
+                        </div>
                     </div>
                 </div>
                 <div className="form">

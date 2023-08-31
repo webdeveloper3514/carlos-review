@@ -6,6 +6,7 @@ const initialState = {
     lastName: localStorage.getItem("lastName") || '',
     email: localStorage.getItem("email") || '',
     userName: localStorage.getItem("userName") || '',
+    emailVerified: localStorage.getItem("emailVerified") || false,
 }
 
 const auth = (state = initialState, action) => {
@@ -16,12 +17,14 @@ const auth = (state = initialState, action) => {
             localStorage.setItem("lastName", action.payload.lastName);
             localStorage.setItem("email", action.payload.email);
             localStorage.setItem("userName", action.payload.userName);
+            localStorage.setItem("emailVerified", action.payload.emailVerified)
             return{
                 token: action.payload.token,
                 name : action.payload.name,
                 lastName : action.payload.lastName,
                 email : action.payload.email,
-                userName : action.payload.userName
+                userName : action.payload.userName,
+                emailVerified : action.payload.emailVerified
             }
         case LOGOUT_USER :
             localStorage.clear();
@@ -30,7 +33,8 @@ const auth = (state = initialState, action) => {
                 name : null,
                 lastName : null,
                 email : null,
-                userName : null
+                userName : null,
+                emailVerified : null,
             }
         default:
             return state;
