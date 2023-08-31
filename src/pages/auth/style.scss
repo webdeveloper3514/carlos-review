@@ -141,7 +141,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                padding-top: 15px;
+                padding-top: 11px;
 
                 button {
                     text-align: center;
@@ -210,7 +210,7 @@
 
         .another-login-option {
             margin-top: 66px;
-            padding-top: 32px;
+            padding-top: 26px;
             border-top: 1px solid var(--gray-gray-20);
             max-width: 470px;
 
@@ -226,7 +226,7 @@
             .another-options {
                 display: flex;
                 gap: 25px;
-                padding-top: 25px;
+                padding-top: 23px;
 
                 button {
                     border-radius: 6px;
@@ -277,13 +277,6 @@
             margin-top: 40px;
         }
 
-    }
-}
-
-
-
-.verify-email-page {
-    .auth-right {
         .form {
 
             .term-condition,
@@ -297,5 +290,6 @@
                 }
             }
         }
+
     }
 }

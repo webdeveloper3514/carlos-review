@@ -2,7 +2,6 @@ import { sendEmailVerification } from 'firebase/auth';
 import { useState, useEffect } from 'react';
 import { Auth } from '../../../firebase/config';
 import artwork from '../../../assets/images/artwork.svg'
-import { LeftOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { PATH_LIST } from '../../../config';
 import { Button, Form } from 'antd';
@@ -107,7 +106,7 @@ const VerifyEmail = () => {
                                         </Form.Item>
                                     </div>
                                     <div className='term-condition'>
-                                        <span>También puedes <Link className='info' to={CONSTANT_ROUTES.user.login} >continuar sin verificar</Link>e ingresar con acceso limitado</span>
+                                        <span>También puedes <Link className='info' to={PATH_LIST.user.login} >continuar sin verificar</Link>e ingresar con acceso limitado</span>
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +117,7 @@ const VerifyEmail = () => {
                             </div>
                             <div className="form">
                                 <div className="action-button">
-                                    <Button onClick={() => navigate(CONSTANT_ROUTES.user.register)}>
+                                    <Button onClick={() => navigate(PATH_LIST.user.register)}>
                                         Registro
                                     </Button>
                                 </div>
