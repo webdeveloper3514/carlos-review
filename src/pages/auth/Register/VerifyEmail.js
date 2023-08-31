@@ -50,6 +50,10 @@ const VerifyEmail = () => {
                                     </h1>
                                 </div>
                                 <h4>¡Ya eres un miembro oficial de Saikit!</h4>
+
+                                <p>
+                                    Recuerda completar tu perfil para desbloquear todas las funcionalidades y tener accesos ilimitados.
+                                </p>
                                 <div className="form">
                                     <div className="action-button">
                                         <Form.Item>

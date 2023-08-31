@@ -290,6 +290,12 @@
             .action-field {
                 justify-content: flex-start;
             }
+
+            .action-button{
+                button{
+                    min-width: 222px;
+                }
+            }
         }
     }
 }
