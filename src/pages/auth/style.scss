@@ -23,6 +23,11 @@
         flex-direction: column;
         justify-content: center;
 
+        h4 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
         .header {
 
             h1 {
@@ -60,8 +65,20 @@
 
 
             }
+        }
 
+        .message {
+            >span {
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 158.687%;
+                padding-top: 15px;
+                display: block;
+            }
+        }
 
+        .fixed-width {
+            width: 470px;
         }
 
         .form {
@@ -127,28 +144,11 @@
                 padding-top: 15px;
 
                 button {
-                    background-color: var(--primary_main);
                     text-align: center;
                     width: 382px;
-                    border: 10px;
                     margin-bottom: 15px;
-                    box-shadow: 0px 9px 20px -8px var(--primary_main);
                     padding: 14px 18px;
                     height: 51px;
-                    color: #FFF;
-                    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-                    font-family: Rubik;
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 600;
-                    line-height: 162.7%;
-                    transition: all 0.5s ease;
-
-                    &:hover {
-                        box-shadow: none;
-                        background-color: rgba(92, 48, 161, 0.8);
-                        text-shadow: none
-                    }
                 }
 
             }
@@ -259,23 +259,37 @@
         }
     }
 
-    
+
 }
-.verify-email-page{
+
+.verify-email-page {
     display: flex;
     position: relative;
-    
-    .auth-right{
+
+    .auth-right {
         justify-content: flex-start;
-        .back{
+
+        .back {
             margin-top: 150px;
         }
 
-        .header{
+        .header {
             margin-top: 40px;
         }
 
     }
+}
 
-    
+
+
+.verify-email-page {
+    .auth-right {
+        .form {
+
+            .term-condition,
+            .action-field {
+                justify-content: flex-start;
+            }
+        }
+    }
 }

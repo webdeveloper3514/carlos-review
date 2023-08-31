@@ -24,12 +24,12 @@ const VerifyEmail = () => {
 
         return () => clearInterval(interval);
     }, [countdown, isResendDisabled]);
-    
+
     const handleResendEmail = async () => {
         setIsResendDisabled(true);
         try {
             await sendEmailVerification(Auth.currentUser);
-            setCountdown(600); 
+            setCountdown(600);
         } catch (error) {
         }
     };
@@ -41,14 +41,14 @@ const VerifyEmail = () => {
             </div>
             <div className="auth-right">
                 {
-                    Auth.currentUser ?
-                        Auth?.currentUser?.emailVerified ? 
-                            <>
+                    !Auth.currentUser ?
+                        !Auth?.currentUser?.emailVerified ?
+                            <div className='fixed-width'>
                                 <div className='header'>
-                                    <h2>
-                                    Tu correo ha sido verificado
-                                    </h2>
-                                </div> 
+                                    <h1>
+                                        Tu correo ha sido verificado
+                                    </h1>
+                                </div>
                                 <h4>¡Ya eres un miembro oficial de Saikit!</h4>
                                 <div className="form">
                                     <div className="action-button">
@@ -63,54 +63,64 @@ const VerifyEmail = () => {
                                         </Form.Item>
                                     </div>
                                 </div>
-                            </>
-                        : 
-                            <>
-                            <div className="back">
-                                <Link to={CONSTANT_ROUTES.user.register}> <LeftOutlined /> Regresar</Link>
                             </div>
-                            <div className="header">
-                                <h1>Verifica tu correo</h1>
-                            </div>
-                            <div className="message">
-                                <p>Necesitamos verificar tu correo. Sigue las instrucciones enviadas a {Auth?.currentUser?.email}</p>
-                                <span>¿No has recibido el link de verificación de correo?</span>
-                            </div>
-                            <div className="form">
-                                <div className="action-field">
-                                    <Form.Item>
-                                        <Button
-                                            type="primary"
-                                            htmlType="submit"
-                                            onClick={() => handleResendEmail()}
-                                            disabled={isResendDisabled}
-                                        >
-                                        {
-                                            isResendDisabled ?
-                                            `Vuelve a intentarlo en ${Math.floor(countdown / 60)}:${countdown % 60} min`
-                                            :
-                                                'Enviar de nuevo'
-                                        }
-                                        </Button>
-                                    </Form.Item>
+                            :
+                            <div className='fixed-width'>
+                                <div className="back">
+                                    <Link to="/login">
+                                        <span className='icon'>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                <path d="M12 16.1924L5.9038 10.0962L12 4" stroke="#5A5A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </span>
+                                        Regresar
+                                    </Link>
+                                </div>
+                                <div className="header">
+                                    <h1>Verifica tu correo</h1>
+                                </div>
+                                <div className="message">
+                                    <p>Necesitamos verificar tu correo. Sigue las instrucciones enviadas a {Auth?.currentUser?.email}</p>
+                                    <span>¿No has recibido el link de verificación de correo?</span>
+                                </div>
+
+                                <div className="form">
+                                    <div className="action-field">
+                                        <Form.Item>
+                                            <Button
+                                                type="primary"
+                                                htmlType="submit"
+                                                onClick={() => handleResendEmail()}
+                                                disabled={isResendDisabled}
+                                            >
+                                                {
+                                                    isResendDisabled ?
+                                                        `Vuelve a intentarlo en ${Math.floor(countdown / 60)}:${countdown % 60} min`
+                                                        :
+                                                        'Enviar de nuevo'
+                                                }
+                                            </Button>
+                                        </Form.Item>
+                                    </div>
+                                    <div className='term-condition'>
+                                        <span>También puedes <Link className='info' to={CONSTANT_ROUTES.user.login} >continuar sin verificar</Link>e ingresar con acceso limitado</span>
+                                    </div>
                                 </div>
                             </div>
-                            <span>También puedes <Link to={CONSTANT_ROUTES.user.login} >continuar sin verificar</Link>e ingresar con acceso limitado</span>
-                            </>   
-                    :
-                    <>
-                        <div className="header">
-                            <h1>Regístrese para verificar el correo electrónico</h1>
-                        </div>
-                        <div className="form">
-                            <div className="action-button">
-                                <Button onClick={() => navigate(CONSTANT_ROUTES.user.register)}>
-                                    Registro
-                                </Button>
+                        :
+                        <>
+                            <div className="header">
+                                <h1>Regístrese para verificar el correo electrónico</h1>
                             </div>
-                        </div>
-                    </>        
-                
+                            <div className="form">
+                                <div className="action-button">
+                                    <Button onClick={() => navigate(CONSTANT_ROUTES.user.register)}>
+                                        Registro
+                                    </Button>
+                                </div>
+                            </div>
+                        </>
+
                 }
             </div>
         </div>

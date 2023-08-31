@@ -25,16 +25,18 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
     font-family: 'Rubik', sans-serif;
     font-weight: bold;
+    color: var(--dark_grey);
 }
 
 p {
     font-family: 'Rubik', sans-serif;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 140%;
-    color: var(--black_dark);
+    color: var(--dark_grey);
     margin-top: 0;
     margin-bottom: 15px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 162.7%;
 }
 
 p:last-child {
@@ -44,6 +46,7 @@ p:last-child {
 
 a {
     color: var(--primary_main);
+    text-decoration: none;
 }
 
 a:hover {
@@ -74,19 +77,44 @@ a:hover {
 }
 
 
+*::-webkit-scrollbar {
+    width: 5px;
+}
 
-.ant-btn-default {
+*::-webkit-scrollbar-thumb {
+    background-color: #C4C4C4;
+    border-radius: 10px;
+}
+
+
+
+.ant-btn-primary {
     background-color: var(--primary_main);
     color: var(--white);
     border-color: var(--primary_main);
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    font-family: Rubik;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 162.7%;
+    height: auto;
+    min-width: 140px;
+    box-shadow: 0px 9px 20px -8px var(--primary_main);
+    padding: 8px 15px;
+    transition: all 0.5s ease;
 }
 
-.ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
-    background-color: #533386;
+.ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
     box-shadow: none;
     color: white;
-    border-color: #533386;
+    border-color: rgba(92, 48, 161, 0.8);
+    background-color: rgba(92, 48, 161, 0.8);
+    text-shadow: none
+}
 
+.ant-btn-primary[disabled] {
+    text-shadow: none;
 }
 
 .note-text {
@@ -105,6 +133,37 @@ a:hover {
     text-decoration-line: underline;
     font-weight: 700;
 }
+
+/*back*/
+.back {
+    margin-bottom: 25px;
+    display: flex;
+}
+
+.back>a {
+    display: flex;
+    align-items: center;
+    font-family: Rubik;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 162.7%;
+}
+
+.back>a .icon {
+    width: 20px;
+    height: 20px;
+    line-height: 0;
+    margin-right: 10px;
+    position: relative;
+    transition: all 0.5s ease;
+    left: 0;
+}
+
+.back>a:hover .icon {
+    left: -4px;
+}
+
+/*back end*/
 
 
 /*button*/

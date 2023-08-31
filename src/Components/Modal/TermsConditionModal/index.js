@@ -1,8 +1,8 @@
-import {Button, Modal} from "antd";
+import { Button, Modal } from "antd";
 import React from "react";
 import "./style.scss";
 
-const TermsConditionModal = ({state, setState}) => {
+const TermsConditionModal = ({ state, setState }) => {
 	return (
 		<Modal
 			className="term-condition-modal"
@@ -14,7 +14,10 @@ const TermsConditionModal = ({state, setState}) => {
 			width={826}
 			footer={[
 				<div key="term-condition-modal" className="modal-footer-button">
-					<Button onClick={() => setState(false)}>¡Entendido!</Button>
+					<Button
+						type="primary"
+						onClick={() => setState(false)}>¡Entendido!
+					</Button>
 				</div>,
 			]}
 		>
@@ -30,8 +33,33 @@ const TermsConditionModal = ({state, setState}) => {
 						reprehenderit in voluptate velit esse cillum dolore eu
 						fugiat nulla pariatur. Excepteur sint occaecat cupidatat
 						non proident, sunt in culpa qui officia deserunt mollit
-						anim id est laborum." 
-                        "Lorem ipsum dolor sit amet,
+						anim id est laborum." </p>
+					<p>
+						"Lorem ipsum dolor sit amet,
+						consectetur adipiscing elit, sed do eiusmod tempor
+						incididunt ut labore et dolore magna aliqua. Ut enim ad
+						minim veniam, quis nostrud exercitation ullamco laboris
+						nisi ut aliquip ex ea commodo consequat. Duis aute irure
+						dolor in reprehenderit in voluptate velit esse cillum
+						dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+						cupidatat non proident, sunt in culpa qui officia
+						deserunt mollit anim id est laborum."
+					</p>
+
+					<p>
+						"Lorem ipsum dolor sit amet,
+						consectetur adipiscing elit, sed do eiusmod tempor
+						incididunt ut labore et dolore magna aliqua. Ut enim ad
+						minim veniam, quis nostrud exercitation ullamco laboris
+						nisi ut aliquip ex ea commodo consequat. Duis aute irure
+						dolor in reprehenderit in voluptate velit esse cillum
+						dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+						cupidatat non proident, sunt in culpa qui officia
+						deserunt mollit anim id est laborum."
+					</p>
+
+					<p>
+						"Lorem ipsum dolor sit amet,
 						consectetur adipiscing elit, sed do eiusmod tempor
 						incididunt ut labore et dolore magna aliqua. Ut enim ad
 						minim veniam, quis nostrud exercitation ullamco laboris
