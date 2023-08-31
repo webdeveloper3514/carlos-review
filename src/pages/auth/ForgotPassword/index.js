@@ -51,11 +51,7 @@ const ForgotPassword = () => {
             </div>
             <div className="auth-right">
                 <div className="back">
-                    {
-                        !isEmailSend ?
                             <Link to="/login"> <LeftOutlined /> Regresar</Link>
-                        : ""
-                    }
                 </div>
                 <div className="header">
                     {

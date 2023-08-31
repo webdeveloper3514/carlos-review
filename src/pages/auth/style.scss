@@ -259,4 +259,23 @@
         }
     }
 
+    
+}
+.verify-email-page{
+    display: flex;
+    position: relative;
+    
+    .auth-right{
+        justify-content: flex-start;
+        .back{
+            margin-top: 150px;
+        }
+
+        .header{
+            margin-top: 40px;
+        }
+
+    }
+
+    
 }

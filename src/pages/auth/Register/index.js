@@ -1,17 +1,18 @@
 import { Button, Form, notification } from "antd";
 import React, { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import RegistrationForm from "./RegistrationForm";
 import "../style.scss";
 import artwork from "../../../assets/images/artwork.svg";
 import TermsConditionModal from "../../../Components/Modal/TermsConditionModal";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { GoogleOutlined, FacebookFilled } from "@ant-design/icons";
 import { emptyField, inValidEmail } from "../../../config/common";
 import { Auth } from "../../../firebase/config";
 import { CONSTANT_ROUTES } from "../../../config";
 
 const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) => {
+    const navigate = useNavigate()
     //signup form state
     const [formData, setFormData] = useState({
         name: "",
@@ -135,19 +136,27 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
                         formData.password
                     ).then((userCredential) => {
                         setIsLoading(false);
-                        notification.success({ description: "Inicio de sesión correcto...", });
-                        <Navigate replace to={CONSTANT_ROUTES.user.login} />;
+                        notification.success({ description: "Registro exitoso. Enviando correo electrónico de verificación...", });
+                        sendEmailVerify(userCredential)
+                        // <Navigate replace to={CONSTANT_ROUTES.user.login} />;
                     })
-                        .catch((error) => {
-                            setIsLoading(false);
-                            notification.error({ description: error.message });
-                        });
+                    .catch((error) => {
+                        setIsLoading(false);
+                        notification.error({ description: error.message });
+                    });
                 }
                 break;
             default:
                 break;
         }
     };
+
+    const sendEmailVerify =(userCredential)=>{
+        sendEmailVerification(userCredential.user)
+        notification.success({ description: "Verification email sent. Please check your inbox and follow the instructions." });
+        navigate(CONSTANT_ROUTES.user.verifyEmail)
+
+    }
 
     return (
         <>
@@ -159,7 +168,7 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
                     <div className="header">
                         <h1>¡Bienvenido a Saikit!</h1>
                         <div className="already-user">
-                            <p>¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link></p>
+                            <p>¿Ya tienes una cuenta? <Link to={CONSTANT_ROUTES.user.login}>Inicia sesión</Link></p>
                         </div>
                     </div>
                     <div className="form">
