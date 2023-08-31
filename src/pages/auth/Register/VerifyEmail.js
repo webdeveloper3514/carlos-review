@@ -4,7 +4,7 @@ import { Auth } from '../../../firebase/config';
 import artwork from '../../../assets/images/artwork.svg'
 import { LeftOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
-import { CONSTANT_ROUTES } from '../../../config';
+import { PATH_LIST } from '../../../config';
 import { Button, Form } from 'antd';
 
 const VerifyEmail = () => {
@@ -56,7 +56,7 @@ const VerifyEmail = () => {
                                             <Button
                                                 type="primary"
                                                 htmlType="submit"
-                                                onClick={() => navigate(CONSTANT_ROUTES.user.login)}
+                                                onClick={() => navigate(PATH_LIST.user.login)}
                                             >
                                                 Continuar
                                             </Button>
@@ -67,7 +67,7 @@ const VerifyEmail = () => {
                         : 
                             <>
                             <div className="back">
-                                <Link to={CONSTANT_ROUTES.user.register}> <LeftOutlined /> Regresar</Link>
+                                <Link to={PATH_LIST.user.register}> <LeftOutlined /> Regresar</Link>
                             </div>
                             <div className="header">
                                 <h1>Verifica tu correo</h1>
@@ -95,7 +95,7 @@ const VerifyEmail = () => {
                                     </Form.Item>
                                 </div>
                             </div>
-                            <span>También puedes <Link to={CONSTANT_ROUTES.user.login} >continuar sin verificar</Link>e ingresar con acceso limitado</span>
+                            <span>También puedes <Link to={PATH_LIST.user.login} >continuar sin verificar</Link>e ingresar con acceso limitado</span>
                             </>   
                     :
                     <>
@@ -104,7 +104,7 @@ const VerifyEmail = () => {
                         </div>
                         <div className="form">
                             <div className="action-button">
-                                <Button onClick={() => navigate(CONSTANT_ROUTES.user.register)}>
+                                <Button onClick={() => navigate(PATH_LIST.user.register)}>
                                     Registro
                                 </Button>
                             </div>

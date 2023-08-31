@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import { Button, Form, notification } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { CONSTANT_ROUTES } from "../../../config";
+import { PATH_LIST } from "../../../config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Auth } from "../../../firebase/config";
 import { emptyField, inValidEmail } from "../../../config/common";
@@ -105,7 +105,7 @@ const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) =>
 
     useEffect(() => {
         if (auth.token) {
-            navigate(CONSTANT_ROUTES.user.profile);
+            navigate(PATH_LIST.user.profile);
         }
     }, [auth]);
 

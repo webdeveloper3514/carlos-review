@@ -1,4 +1,4 @@
-export const CONSTANT_ROUTES = {
+export const PATH_LIST = {
     user: {
         common: "/",
         login: "/login",

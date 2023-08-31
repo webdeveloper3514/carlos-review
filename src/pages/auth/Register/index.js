@@ -9,7 +9,7 @@ import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/
 import { GoogleOutlined, FacebookFilled } from "@ant-design/icons";
 import { emptyField, inValidEmail } from "../../../config/common";
 import { Auth } from "../../../firebase/config";
-import { CONSTANT_ROUTES } from "../../../config";
+import { PATH_LIST } from "../../../config";
 
 const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) => {
     const navigate = useNavigate()
@@ -138,7 +138,7 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
                         setIsLoading(false);
                         notification.success({ description: "Registro exitoso. Enviando correo electrónico de verificación...", });
                         sendEmailVerify(userCredential)
-                        // <Navigate replace to={CONSTANT_ROUTES.user.login} />;
+                        // <Navigate replace to={PATH_LIST.user.login} />;
                     })
                     .catch((error) => {
                         setIsLoading(false);
@@ -154,7 +154,7 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
     const sendEmailVerify =(userCredential)=>{
         sendEmailVerification(userCredential.user)
         notification.success({ description: "Verification email sent. Please check your inbox and follow the instructions." });
-        navigate(CONSTANT_ROUTES.user.verifyEmail)
+        navigate(PATH_LIST.user.verifyEmail)
 
     }
 
@@ -168,7 +168,7 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
                     <div className="header">
                         <h1>¡Bienvenido a Saikit!</h1>
                         <div className="already-user">
-                            <p>¿Ya tienes una cuenta? <Link to={CONSTANT_ROUTES.user.login}>Inicia sesión</Link></p>
+                            <p>¿Ya tienes una cuenta? <Link to={PATH_LIST.user.login}>Inicia sesión</Link></p>
                         </div>
                     </div>
                     <div className="form">

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
-import {CONSTANT_ROUTES} from "../../config";
+import {PATH_LIST} from "../../config";
 import Login from "../../pages/auth/Login";
 import Register from "../../pages/auth/Register";
 import {FacebookAuthProvider, GoogleAuthProvider, signInWithPopup,} from "firebase/auth";
@@ -37,7 +37,7 @@ const RouteList = () => {
                     userName: result.user.displayName,
                 },
             });
-            navigate(CONSTANT_ROUTES.user.profile);
+            navigate(PATH_LIST.user.profile);
             setGLoading(false);
         }).catch((error) => {
             setGLoading(false);
@@ -62,7 +62,7 @@ const RouteList = () => {
                     userName: result.user.displayName,
                 },
             });
-            navigate(CONSTANT_ROUTES.user.profile);
+            navigate(PATH_LIST.user.profile);
             setFbLoading(false);
         }).catch((error) => {
             setFbLoading(false);
@@ -72,16 +72,16 @@ const RouteList = () => {
 
     return (
         <Routes>
-            <Route path={CONSTANT_ROUTES.user.common} element={<Login signInWithGoogle={signInWithGoogle} gLoading={gLoading} signInWithFacebook={signInWithFacebook} fbLoading={fbLoading} /> } />
-            <Route path={CONSTANT_ROUTES.user.login} element={<Login signInWithGoogle={signInWithGoogle}  gLoading={gLoading} signInWithFacebook={signInWithFacebook} fbLoading={fbLoading} /> } />
-            <Route  exact path={CONSTANT_ROUTES.user.register} element={<Register signInWithGoogle={signInWithGoogle} gLoading={gLoading}signInWithFacebook={signInWithFacebook}  fbLoading={fbLoading} /> } />
-            <Route  exact path={CONSTANT_ROUTES.user.verifyEmail} element={<VerifyEmail /> } />
-            <Route exact path={CONSTANT_ROUTES.user.forgotPassword} element={<ForgotPassword />} />
-            <Route exact path={CONSTANT_ROUTES.user.profile} element={
+            <Route path={PATH_LIST.user.common} element={<Login signInWithGoogle={signInWithGoogle} gLoading={gLoading} signInWithFacebook={signInWithFacebook} fbLoading={fbLoading} /> } />
+            <Route path={PATH_LIST.user.login} element={<Login signInWithGoogle={signInWithGoogle}  gLoading={gLoading} signInWithFacebook={signInWithFacebook} fbLoading={fbLoading} /> } />
+            <Route  exact path={PATH_LIST.user.register} element={<Register signInWithGoogle={signInWithGoogle} gLoading={gLoading}signInWithFacebook={signInWithFacebook}  fbLoading={fbLoading} /> } />
+            <Route  exact path={PATH_LIST.user.verifyEmail} element={<VerifyEmail /> } />
+            <Route exact path={PATH_LIST.user.forgotPassword} element={<ForgotPassword />} />
+            <Route exact path={PATH_LIST.user.profile} element={
                 auth?.token ? (
                     <Profile />
                 ) : (
-                    <Navigate replace to={CONSTANT_ROUTES.user.login} />
+                    <Navigate replace to={PATH_LIST.user.login} />
                 )
             }
             />
