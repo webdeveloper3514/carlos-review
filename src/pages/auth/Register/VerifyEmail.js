@@ -35,6 +35,19 @@ const VerifyEmail = () => {
         }
     };
 
+    const [isEmailVerified, setIsEmailVerified] = useState(false); // Track email verification status
+
+    useEffect(() => {
+        const unsubscribe = Auth.onAuthStateChanged(user => {
+            if (user) {
+                setIsEmailVerified(user.emailVerified);
+            } else {
+                setIsEmailVerified(false);
+            }
+        });
+
+        return () => unsubscribe(); // Clean up the observer when component unmounts
+    }, []);
     return (
         <>
             <div className="auth-section verify-email-page">

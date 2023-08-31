@@ -79,7 +79,7 @@ const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) =>
                         formData.password
                     )
                     .then((result) => {
-                                                notification.success({ description: "Inicio de sesión correcto...", });
+                            notification.success({ description: "Inicio de sesión correcto...", });
                         dispatch({
                             type: LOGIN_USER,
                             payload: {
@@ -88,6 +88,7 @@ const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) =>
                                 lastName: result?.user?.displayName?.navigatesplit(" ")[1],
                                 email: result?.user?.email,
                                 userName: result?.user?.displayName,
+                                emailVerified : result?.user?.emailVerified,
                             },
                         });
                         setIsLoading(false);

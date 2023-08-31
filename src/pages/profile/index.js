@@ -25,7 +25,6 @@ const Profile = () => {
     useEffect(() => {
         onAuthStateChanged(Auth, (user) => {
             if (user) {
-            console.log(user);
             if (user.displayName == null) {
                 const u1 = user.email.slice(0, -10);
                 const uName = u1.charAt(0).toUpperCase() + u1.slice(1);
@@ -36,11 +35,12 @@ const Profile = () => {
             dispatch({
                 type: LOGIN_USER,
                 payload: {
-                token: user?.accessToken,
-                name: user.displayName ? user?.displayName?.split(" ")[0] : displayName ,
-                lastName: user?.displayName?.split(" ")[1],
-                email: user?.email,
-                userName: user?.displayName,
+                    token: user?.accessToken,
+                    name: user.displayName ? user?.displayName?.split(" ")[0] : displayName ,
+                    lastName: user?.displayName?.split(" ")[1],
+                    email: user?.email,
+                    userName: user?.displayName,
+                    emailVerified : user?.emailVerified,
                 },
             });
             } else {
@@ -58,6 +58,7 @@ const Profile = () => {
             <div className="de" style={{padding: '20px'}}>
                 <div>Name :{auth?.name} {auth?.lastName}</div>
                 <div>Email :{auth?.email}</div>
+                <div>Verified Email :{auth?.emailVerified ? 'true' : 'false'}</div>
             </div>
         </div>
     );
