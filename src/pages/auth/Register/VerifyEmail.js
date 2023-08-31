@@ -4,7 +4,7 @@ import { Auth } from '../../../firebase/config';
 import artwork from '../../../assets/images/artwork.svg'
 import { LeftOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
-import { CONSTANT_ROUTES } from '../../../config';
+import { PATH_LIST } from '../../../config';
 import { Button, Form } from 'antd';
 
 const VerifyEmail = () => {
@@ -60,7 +60,7 @@ const VerifyEmail = () => {
                                             <Button
                                                 type="primary"
                                                 htmlType="submit"
-                                                onClick={() => navigate(CONSTANT_ROUTES.user.login)}
+                                                onClick={() => navigate(PATH_LIST.user.login)}
                                             >
                                                 Continuar
                                             </Button>

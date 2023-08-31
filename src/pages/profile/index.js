@@ -22,33 +22,33 @@ const Profile = () => {
     };
 
     // Monitor currently sign in user
-    // useEffect(() => {
-    //     onAuthStateChanged(Auth, (user) => {
-    //         if (user) {
-            // console.log(user);
-    //         if (user.displayName == null) {
-    //             const u1 = user.email.slice(0, -10);
-    //             const uName = u1.charAt(0).toUpperCase() + u1.slice(1);
-    //             setdisplayName(uName);
-    //         } else {
-    //             setdisplayName(user.displayName);
-    //         }
-    //         dispatch({
-    //             type: LOGIN_USER,
-    //             payload: {
-    //             token: user?.accessToken,
-    //             name: user.displayName ? user?.displayName?.split(" ")[0] : displayName ,
-    //             lastName: user?.displayName?.split(" ")[1],
-    //             email: user?.email,
-    //             userName: user?.displayName,
-    //             },
-    //         });
-    //         } else {
-    //             setdisplayName("");
-    //             dispatch({type: LOGOUT_USER});
-    //         }
-    //     });
-    // }, [dispatch, displayName]);
+    useEffect(() => {
+        onAuthStateChanged(Auth, (user) => {
+            if (user) {
+            console.log(user);
+            if (user.displayName == null) {
+                const u1 = user.email.slice(0, -10);
+                const uName = u1.charAt(0).toUpperCase() + u1.slice(1);
+                setdisplayName(uName);
+            } else {
+                setdisplayName(user.displayName);
+            }
+            dispatch({
+                type: LOGIN_USER,
+                payload: {
+                token: user?.accessToken,
+                name: user.displayName ? user?.displayName?.split(" ")[0] : displayName ,
+                lastName: user?.displayName?.split(" ")[1],
+                email: user?.email,
+                userName: user?.displayName,
+                },
+            });
+            } else {
+                setdisplayName("");
+                dispatch({type: LOGOUT_USER});
+            }
+        });
+    }, [dispatch, displayName]);
 
     return (
         <div>
