@@ -7,7 +7,7 @@
     --turquesa-turquesa: #0DC9C2;
     --active_border_15: #0DC9C226;
     --gray-gray-20: #D4D4D4;
-    --f24: 45px;
+    --f45: 45px;
 }
 
 * {
@@ -281,4 +281,28 @@ span.ant-checkbox .ant-checkbox-inner::after {
     height: 12.143px;
     top: 10px;
     left: 6px;
+}
+
+
+@media screen and (max-width:1200px) {
+    p {
+        font-size: 14px;
+    }
+
+    .ant-btn-primary {
+        font-size: 14px;
+    }
+
+    .back>a {
+        font-size: 14px;
+    }
+
+    span.ant-input-affix-wrapper {
+        font-size: 14px;
+    }
+
+    input.ant-input {
+        font-size: 14px;
+    }
+
 }

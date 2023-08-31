@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import RegistrationForm from "./RegistrationForm";
 import "../style.scss";
-import artwork from "../../../assets/images/artwork.svg";
+import artwork from '../../../assets/images/artwork.svg'
+import tableartwork from '../../../assets/images/tableartwork.svg'
+import mobileartwork from '../../../assets/images/mobileartwork.svg'
 import TermsConditionModal from "../../../Components/Modal/TermsConditionModal";
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { GoogleOutlined, FacebookFilled } from "@ant-design/icons";
@@ -140,10 +142,10 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
                         sendEmailVerify(userCredential)
                         // <Navigate replace to={PATH_LIST.user.login} />;
                     })
-                    .catch((error) => {
-                        setIsLoading(false);
-                        notification.error({ description: error.message });
-                    });
+                        .catch((error) => {
+                            setIsLoading(false);
+                            notification.error({ description: error.message });
+                        });
                 }
                 break;
             default:
@@ -151,7 +153,7 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
         }
     };
 
-    const sendEmailVerify =(userCredential)=>{
+    const sendEmailVerify = (userCredential) => {
         sendEmailVerification(userCredential.user)
         notification.success({ description: "Verification email sent. Please check your inbox and follow the instructions." });
         navigate(PATH_LIST.user.verifyEmail)
@@ -162,13 +164,17 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
         <>
             <div className="auth-section register-page">
                 <div className="auth-left">
-                    <img src={artwork} alt="artwork" />
+                    <img className='desktop-arc' src={artwork} alt="artwork" />
+                    <img className='table-arc' src={tableartwork} alt="tabletartwork" />
+                    <img className='mobile-arc' src={mobileartwork} alt="mobileartwork" />
                 </div>
                 <div className="auth-right">
-                    <div className="header">
-                        <h1>¡Bienvenido a Saikit!</h1>
-                        <div className="already-user">
-                            <p>¿Ya tienes una cuenta? <Link to={PATH_LIST.user.login}>Inicia sesión</Link></p>
+                    <div className='fixed-width'>
+                        <div className="header">
+                            <h1>¡Bienvenido a Saikit!</h1>
+                            <div className="already-user">
+                                <p>¿Ya tienes una cuenta? <Link to={PATH_LIST.user.login}>Inicia sesión</Link></p>
+                            </div>
                         </div>
                     </div>
                     <div className="form">

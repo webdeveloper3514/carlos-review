@@ -2,6 +2,8 @@ import { sendEmailVerification } from 'firebase/auth';
 import { useState, useEffect } from 'react';
 import { Auth } from '../../../firebase/config';
 import artwork from '../../../assets/images/artwork.svg'
+import tableartwork from '../../../assets/images/tableartwork.svg'
+import mobileartwork from '../../../assets/images/mobileartwork.svg'
 import { Link, useNavigate } from 'react-router-dom';
 import { PATH_LIST } from '../../../config';
 import { Button, Form } from 'antd';
@@ -36,7 +38,9 @@ const VerifyEmail = () => {
     return (
         <div className="auth-section verify-email-page">
             <div className="auth-left">
-                <img src={artwork} alt="artwork" />
+                <img className='desktop-arc' src={artwork} alt="artwork" />
+                <img className='table-arc' src={tableartwork} alt="tabletartwork" />
+                <img className='mobile-arc' src={mobileartwork} alt="mobileartwork" />
             </div>
             <div className="auth-right">
                 {

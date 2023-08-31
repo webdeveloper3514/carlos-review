@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import artwork from "../../../assets/images/artwork.svg";
+import artwork from '../../../assets/images/artwork.svg'
+import tableartwork from '../../../assets/images/tableartwork.svg'
+import mobileartwork from '../../../assets/images/mobileartwork.svg'
 import "../style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import LoginForm from "./LoginForm";
@@ -78,24 +80,24 @@ const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) =>
                         formData.email,
                         formData.password
                     )
-                    .then((result) => {
-                                                notification.success({ description: "Inicio de sesión correcto...", });
-                        dispatch({
-                            type: LOGIN_USER,
-                            payload: {
-                                token: result?.user?.accessToken,
-                                name: result?.user?.displayName?.split(" ")[0],
-                                lastName: result?.user?.displayName?.navigatesplit(" ")[1],
-                                email: result?.user?.email,
-                                userName: result?.user?.displayName,
-                            },
+                        .then((result) => {
+                            notification.success({ description: "Inicio de sesión correcto...", });
+                            dispatch({
+                                type: LOGIN_USER,
+                                payload: {
+                                    token: result?.user?.accessToken,
+                                    name: result?.user?.displayName?.split(" ")[0],
+                                    lastName: result?.user?.displayName?.navigatesplit(" ")[1],
+                                    email: result?.user?.email,
+                                    userName: result?.user?.displayName,
+                                },
+                            });
+                            setIsLoading(false);
+                        })
+                        .catch((error) => {
+                            setIsLoading(false);
+                            notification.error({ description: error.message });
                         });
-                        setIsLoading(false);
-                    })
-                    .catch((error) => {
-                        setIsLoading(false);
-                        notification.error({ description: error.message });
-                    });
                 }
                 break;
             default:
@@ -112,14 +114,18 @@ const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) =>
     return (
         <div className="auth-section login-page">
             <div className="auth-left">
-                <img src={artwork} alt="artwork" />
+                <img className='desktop-arc' src={artwork} alt="artwork" />
+                <img className='table-arc' src={tableartwork} alt="tabletartwork" />
+                <img className='mobile-arc' src={mobileartwork} alt="mobileartwork" />
             </div>
 
             <div className="auth-right">
-                <div className="header">
-                    <h1>¡Hola de nuevo!</h1>
-                    <div className="already-user">
-                        <p>¿Aún no tienes una cuenta? <Link to="/register">Regístrate</Link></p>
+                <div className='fixed-width'>
+                    <div className="header">
+                        <h1>¡Hola de nuevo!</h1>
+                        <div className="already-user">
+                            <p>¿Aún no tienes una cuenta? <Link to="/register">Regístrate</Link></p>
+                        </div>
                     </div>
                 </div>
                 <div className="form">

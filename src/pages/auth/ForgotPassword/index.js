@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import artwork from '../../../assets/images/artwork.svg'
+import tableartwork from '../../../assets/images/tableartwork.svg'
+import mobileartwork from '../../../assets/images/mobileartwork.svg'
 import { Link } from 'react-router-dom'
 import { Button, Form, Input, notification } from 'antd'
 import { sendPasswordResetEmail } from 'firebase/auth'
@@ -47,7 +49,9 @@ const ForgotPassword = () => {
     return (
         <div className="auth-section forgot-password-page">
             <div className="auth-left">
-                <img src={artwork} alt="artwork" />
+                <img className='desktop-arc' src={artwork} alt="artwork" />
+                <img className='table-arc' src={tableartwork} alt="tabletartwork" />
+                <img className='mobile-arc' src={mobileartwork} alt="mobileartwork" />
             </div>
             <div className="auth-right">
                 <div className='fixed-width'>
