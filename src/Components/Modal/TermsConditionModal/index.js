@@ -2,12 +2,12 @@ import { Button, Modal } from "antd";
 import React from "react";
 import "./style.scss";
 
-const TermsConditionModal = ({ state, setState }) => {
+const TermsConditionModal = ({ closeModal, setCloseModal }) => {
 	return (
 		<Modal
 			className="term-condition-modal"
-			open={state}
-			onCancel={() => setState(false)}
+			open={closeModal}
+			onCancel={() => setCloseModal(false)}
 			centered={true}
 			transitionName=""
 			maskTransitionName=""
@@ -16,7 +16,7 @@ const TermsConditionModal = ({ state, setState }) => {
 				<div key="term-condition-modal" className="modal-footer-button">
 					<Button
 						type="primary"
-						onClick={() => setState(false)}>¡Entendido!
+						onClick={() => setCloseModal(false)}>¡Entendido!
 					</Button>
 				</div>,
 			]}

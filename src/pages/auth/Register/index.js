@@ -97,7 +97,7 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
         setFormErrors({ ...changeError });
     };
 
-    const dispatchAction = (action) => {
+    const dispatchAction = async () => {
         let errors = {};
         if (emptyField(formData.name)) {
             errors.name = "¡Se requiere el nombre!";
@@ -116,34 +116,28 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
         }
 
         setFormErrors({ ...errors });
-        switch (action) {
-            case "submit":
-                if (Object.keys(errors).length === 0) {
-                    setIsLoading(true);
-                    createUserWithEmailAndPassword(
-                        Auth,
-                        formData.email,
-                        formData.password
-                    ).then((userCredential) => {
-                        setIsLoading(false);
-                        notification.success({ description: "Registro exitoso. Enviando correo electrónico de verificación...", });
-                        sendEmailVerify(userCredential)
-                    })
-                    .catch((error) => {
-                        setIsLoading(false);
-                        notification.error({ description: error.message });
-                    });
-                }
-                break;
-            default:
-                break;
+        if (Object.keys(errors).length === 0) {
+            setIsLoading(true);
+            try {
+                const userCredential = await createUserWithEmailAndPassword(
+                    Auth,
+                    formData.email,
+                    formData.password
+                );
+                setIsLoading(false);
+                notification.success({ description: "Registro exitoso. Enviando correo electrónico de verificación...", });
+                sendEmailVerify(userCredential);
+            } catch (error) {
+                setIsLoading(false);
+                notification.error({ description: error.message });
+            }
         }
     };
 
     const sendEmailVerify = (userCredential) => {
         sendEmailVerification(userCredential.user)
         notification.success({ description: "El mensaje de verificación ha sido enviado. Por favor revisa tu bandeja de entrada y sigue las instrucciones." });
-        navigate(PATH_LIST.user.verifyEmail)
+        navigate(PATH_LIST.USER.VERIFY_EMAIL)
 
     }
 
@@ -156,7 +150,7 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
                         <div className="header">
                             <h1>¡Bienvenido a Saikit!</h1>
                             <div className="already-user">
-                                <p>¿Ya tienes una cuenta? <Link to={PATH_LIST.user.login}>Inicia sesión</Link></p>
+                                <p>¿Ya tienes una cuenta? <Link to={PATH_LIST.USER.LOGIN}>Inicia sesión</Link></p>
                             </div>
                         </div>
                     </div>
@@ -173,7 +167,7 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
                                 <Button
                                     type="primary"
                                     htmlType="submit"
-                                    onClick={() => dispatchAction("submit")}
+                                    onClick={() => dispatchAction()}
                                     loading={isLoading}
                                 >
                                     Regístrate
@@ -194,7 +188,7 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
                                 <div className="facebook">
                                     <Button
                                         className=""
-                                        onClick={signInWithFacebook}
+                                        onClick={()=> signInWithFacebook()}
                                         loading={fbLoading}
                                     >
                                         <FacebookFilled /> Ingresar con Facebook
@@ -203,7 +197,7 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
                                 <div className="google">
                                     <Button
                                         className=""
-                                        onClick={signInWithGoogle}
+                                        onClick={()=> signInWithGoogle()}
                                         loading={gLoading}
                                     >
                                         <GoogleOutlined /> Ingresar con Gmail
@@ -216,8 +210,8 @@ const Register = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading })
             </div>
             {termModal && (
                 <TermsConditionModal
-                    state={termModal}
-                    setState={setTermModal}
+                    closeModal={termModal}
+                    setCloseModal={setTermModal}
                 />
             )}
         </>

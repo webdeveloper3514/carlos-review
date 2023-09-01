@@ -8,15 +8,14 @@ const Profile = () => {
     const auth = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
-    const logoutUser = () => {
-        signOut(Auth)
-        .then(() => {
-            dispatch({type: LOGOUT_USER})
-            notification.success({description: "Cerrar sesión exitosamente.",});
-        })
-        .catch((error) => {
-            notification.error({description: error.message});
-        });
+    const logoutUser = async () => {
+        try {
+            await signOut(Auth);
+            dispatch({ type: LOGOUT_USER });
+            notification.success({ description: "Cerrar sesión exitosamente." });
+          } catch (error) {
+            notification.error({ description: error.message });
+          }
     };
 
     return (

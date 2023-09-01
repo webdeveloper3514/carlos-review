@@ -66,7 +66,7 @@ const VerifyEmail = () => {
                                                 <Button
                                                     type="primary"
                                                     htmlType="submit"
-                                                    onClick={() => navigate(PATH_LIST.user.login)}
+                                                    onClick={() => navigate(PATH_LIST.USER.LOGIN)}
                                                 >
                                                     Continuar
                                                 </Button>
@@ -76,7 +76,7 @@ const VerifyEmail = () => {
                                 </div>
                                 :
                                 <div className='fixed-width'>
-                                    <BackButton route={PATH_LIST.user.login} />
+                                    <BackButton route={PATH_LIST.USER.LOGIN} />
                                     <div className="header">
                                         <h1>Verifica tu correo</h1>
                                     </div>
@@ -104,7 +104,7 @@ const VerifyEmail = () => {
                                             </Form.Item>
                                         </div>
                                         <div className='term-condition'>
-                                            <span>También puedes <Link className='info' to={PATH_LIST.user.login} >continuar sin verificar</Link>e ingresar con acceso limitado</span>
+                                            <span>También puedes <Link className='info' to={PATH_LIST.USER.LOGIN} >continuar sin verificar</Link>e ingresar con acceso limitado</span>
                                         </div>
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@ const VerifyEmail = () => {
                                 </div>
                                 <div className="form">
                                     <div className="action-button">
-                                        <Button onClick={() => navigate(PATH_LIST.user.register)}>
+                                        <Button onClick={() => navigate(PATH_LIST.USER.REGISTER)}>
                                             Registro
                                         </Button>
                                     </div>
@@ -127,8 +127,8 @@ const VerifyEmail = () => {
             {
                 benifitModal &&
                 <BenifitesModal
-                    state={benifitModal}
-                    setState={setBenifitModal}
+                    closeModal={benifitModal}
+                    setCloseModal={setBenifitModal}
                 />
             }
         </>

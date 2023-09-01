@@ -7,7 +7,7 @@ export const loginUser = (result) => async (dispatch) => {
         payload: {
             token: result?.user?.accessToken,
             name: result?.user?.displayName?.split(" ")[0],
-            lastName: result?.user?.displayName?.split(" ")[1],
+            lastName: result?.user?.displayName?.split(" ")[1] ? result?.user?.displayName?.split(" ")[1] : " " ,
             email: result?.user?.email,
             userName: result?.user?.displayName,
         },

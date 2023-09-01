@@ -15,14 +15,12 @@ const ForgotPassword = () => {
         const emailRegex = /^\w+([\.\+-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if (value === "") {
             setEmailErr("Â¡Correo electronico es requerido!");
-            setEmail(value);
         } else if (!emailRegex.test(value)) {
             setEmailErr("Â¡La direcciÃ³n de correo electrÃ³nico no es vÃ¡lida!");
-            setEmail(value);
         } else {
             setEmailErr("");
-            setEmail(value);
         }
+        setEmail(value);
     };
 
     const handleSendEmail = () => {
@@ -48,7 +46,7 @@ const ForgotPassword = () => {
             <AuthLeft />
             <div className="auth-right">
                 <div className='fixed-width'>
-                    <BackButton route={PATH_LIST.user.login} />
+                    <BackButton route={PATH_LIST.USER.LOGIN} />
                     <div className="header">
                         {
                             !isEmailSend ?

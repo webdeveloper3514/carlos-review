@@ -20,50 +20,50 @@ const RouteList = () => {
     const [gLoading, setGLoading] = useState(false);
     const [fbLoading, setFbLoading] = useState(false);
 
-    // Login with Gooogle
-    const GProvider = new GoogleAuthProvider();
-    const signInWithGoogle = () => {
-        setGLoading(true);
-        signInWithPopup(Auth, GProvider)
-        .then((result) => {
-            notification.success({description: "Inicio de sesión correcto..."});
-            dispatch(loginUser(result));
-            navigate(PATH_LIST.user.profile);
-            setGLoading(false);
-        }).catch((error) => {
-            setGLoading(false);
-            notification.error({description: error.message});
-        });
-    };
+    // Login with Google
+	const GProvider = new GoogleAuthProvider();
+	const signInWithGoogle = async () => {
+		setGLoading(true);
+		try {
+			const result = await signInWithPopup(Auth, GProvider);
+			notification.success({description: "Inicio de sesión correcto..."});
+			dispatch(loginUser(result));
+			navigate(PATH_LIST.USER.PROFILE);
+		} catch (error) {
+			notification.error({description: error.message});
+		} finally {
+			setGLoading(false);
+		}
+	};
 
-    //login using Facebook
-    const fbProvider = new FacebookAuthProvider();
-    const signInWithFacebook = () => {
-        setFbLoading(true);
-        signInWithPopup(Auth, fbProvider)
-        .then((result) => {
-            notification.success({description: "Inicio de sesión correcto..."});
-            dispatch(dispatch(loginUser(result)));
-            navigate(PATH_LIST.user.profile);
-            setFbLoading(false);
-        }).catch((error) => {
-            setFbLoading(false);
-            notification.error({description: error.message});
-        });
-    };
+	// Login using Facebook
+	const fbProvider = new FacebookAuthProvider();
+	const signInWithFacebook = async () => {
+		setFbLoading(true);
+		try {
+			const result = await signInWithPopup(Auth, fbProvider);
+			notification.success({description: "Inicio de sesión correcto..."});
+			dispatch(loginUser(result));
+			navigate(PATH_LIST.USER.PROFILE);
+		} catch (error) {
+			notification.error({description: error.message});
+		} finally {
+			setFbLoading(false);
+		}
+	};
 
     return (
         <Routes>
-            <Route path={PATH_LIST.user.common} element={<Login signInWithGoogle={signInWithGoogle} gLoading={gLoading} signInWithFacebook={signInWithFacebook} fbLoading={fbLoading} /> } />
-            <Route path={PATH_LIST.user.login} element={<Login signInWithGoogle={signInWithGoogle}  gLoading={gLoading} signInWithFacebook={signInWithFacebook} fbLoading={fbLoading} /> } />
-            <Route  exact path={PATH_LIST.user.register} element={<Register signInWithGoogle={signInWithGoogle} gLoading={gLoading}signInWithFacebook={signInWithFacebook}  fbLoading={fbLoading} /> } />
-            <Route  exact path={PATH_LIST.user.verifyEmail} element={<VerifyEmail /> } />
-            <Route exact path={PATH_LIST.user.forgotPassword} element={<ForgotPassword />} />
-            <Route exact path={PATH_LIST.user.profile} element={
+            <Route path={PATH_LIST.USER.COMMON} element={<Login signInWithGoogle={signInWithGoogle} gLoading={gLoading} signInWithFacebook={signInWithFacebook} fbLoading={fbLoading} /> } />
+            <Route path={PATH_LIST.USER.LOGIN} element={<Login signInWithGoogle={signInWithGoogle}  gLoading={gLoading} signInWithFacebook={signInWithFacebook} fbLoading={fbLoading} /> } />
+            <Route  exact path={PATH_LIST.USER.REGISTER} element={<Register signInWithGoogle={signInWithGoogle} gLoading={gLoading}signInWithFacebook={signInWithFacebook}  fbLoading={fbLoading} /> } />
+            <Route  exact path={PATH_LIST.USER.VERIFY_EMAIL} element={<VerifyEmail /> } />
+            <Route exact path={PATH_LIST.USER.FORGOT_PASSWORD} element={<ForgotPassword />} />
+            <Route exact path={PATH_LIST.USER.PROFILE} element={
                 auth?.token ? (
                     <Profile />
                 ) : (
-                    <Navigate replace to={PATH_LIST.user.login} />
+                    <Navigate replace to={PATH_LIST.USER.L} />
                 )
             }
             />

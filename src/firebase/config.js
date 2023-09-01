@@ -6,8 +6,8 @@ const firebaseConfig = {
     authDomain: "sakit-review-system.firebaseapp.com",
     projectId: "sakit-review-system",
     storageBucket: "sakit-review-system.appspot.com",
-    messagingSenderId: "169502538768",
-    appId: "1:169502538768:web:c71e1f36f039621c0fde95"
+    messagingSenderId: process.env.REACT_APP_FB_SENDER_ID,
+    appId: process.env.REACT_APP_FB_APP_ID,
 };
 
 // Initialize Firebase

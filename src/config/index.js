@@ -1,10 +1,10 @@
 export const PATH_LIST = {
-    user: {
-        common: "/",
-        login: "/login",
-        register: "/register",
-        verifyEmail : "/verify-email",
-        forgotPassword: "/forgotPassword",
-        profile: "/profile"
+    USER: {
+        COMMON: "/",
+        LOGIN: "/login",
+        REGISTER: "/register",
+        VERIFY_EMAIL : "/verify-email",
+        FORGOT_PASSWORD: "/forgotPassword",
+        PROFILE: "/profile"
     }
 }

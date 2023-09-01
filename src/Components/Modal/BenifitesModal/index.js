@@ -3,12 +3,12 @@ import React from 'react'
 import "./style.scss";
 import { Icon } from '../../../config/common';
 
-const BenifitesModal = ({state, setState}) => {
+const BenifitesModal = ({closeModal, setCloseModal}) => {
   return (
     <Modal
 			className="benifit-modal"
-			open={state}
-			onCancel={() => setState(false)}
+			open={closeModal}
+			onCancel={() => setCloseModal(false)}
 			centered={true}
 			transitionName=""
 			maskTransitionName=""
@@ -17,7 +17,7 @@ const BenifitesModal = ({state, setState}) => {
 				<div key="benifit-modal" className="modal-footer-button">
 					<Button
 						type="primary"
-						onClick={() => setState(false)}>¡Entendido!
+						onClick={() => setCloseModal(false)}>¡Entendido!
 					</Button>
 				</div>
 			]}

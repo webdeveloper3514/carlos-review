@@ -45,7 +45,7 @@ const LoginForm = ({data, error, handleChange, handleBlur}) => {
                     </Form.Item>
                 </div>
                 <div className="forgot-password">
-                    <Link to={PATH_LIST.user.forgotPassword}>Olvidé mi contraseña</Link>
+                    <Link to={PATH_LIST.USER.FORGOT_PASSWORD}>Olvidé mi contraseña</Link>
                 </div>
             </div>
 

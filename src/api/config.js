@@ -12,37 +12,24 @@ const handleApiError = (error) => {
 	}
 };
 
-const makeApiCall = async ({method, endpoint, data = null, headers = {}, ...rest }) => {
-	return new Promise((resolve, reject) => {
-		api({
+const makeApiCall = async ({ method, endpoint, data = null, headers = {}, ...rest }) => {
+	try {
+		const res = await api({
 			method,
 			url: endpoint,
 			data,
 			headers,
 			...rest,
-		}).then((res) => {
-            if (res.data) {
-                resolve(res.data);
-            }
-        }).catch((err) => {
-            handleApiError(err);
-            reject(err);
-        });
-	});
+		});
+
+		if (res.data) {
+			return res.data;
+		}
+	} catch (err) {
+		handleApiError(err);
+		throw err;
+	}
 };
 
 export default makeApiCall;
 
-//example to how to make this api call
-// useEffect(() => {
-//   makeApiCall({
-//     method: 'GET',
-//     endpoint: '/data',
-//   })
-//     .then(responseData => {
-//       setData(responseData);
-//     })
-//     .catch(error => {
-//       setError(error.message);
-//     });
-// }, []);

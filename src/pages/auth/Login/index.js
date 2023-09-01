@@ -55,7 +55,7 @@ const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) =>
         setFormErrors({ ...changeError });
     };
 
-    const dispatchAction = (action) => {
+    const dispatchAction = async () => {
         let errors = {};
         if (emptyField(formData.email)) {
             errors.email = "¡correo electronico es requerido!";
@@ -65,30 +65,23 @@ const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) =>
         }
 
         setFormErrors({ ...errors });
-        switch (action) {
-            case "login":
-                if (Object.keys(errors).length === 0) {
-                    setIsLoading(true);
-                    signInWithEmailAndPassword(Auth, formData.email, formData.password)
-                    .then((result) => {
-                        notification.success({ description: "Inicio de sesión correcto...", });
-                        dispatch(loginUser(result));
-                        setIsLoading(false);
-                    })
-                    .catch((error) => {
-                        setIsLoading(false);
-                        notification.error({ description: error.message });
-                    });
-                }
-                break;
-            default:
-                break;
+        if (Object.keys(errors).length === 0) {
+            setIsLoading(true);
+            try {
+                const result = await signInWithEmailAndPassword(Auth, formData.email, formData.password);
+                notification.success({ description: "Inicio de sesión correcto..." });
+                dispatch(loginUser(result));
+                setIsLoading(false);
+            } catch (error) {
+                setIsLoading(false);
+                notification.error({ description: error.message });
+            }
         }
     };
 
     useEffect(() => {
         if (auth.token) {
-            navigate(PATH_LIST.user.profile);
+            navigate(PATH_LIST.USER.PROFILE);
         }
     }, [auth]);
 
@@ -112,7 +105,7 @@ const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) =>
                             <Button
                                 type="primary"
                                 htmlType="submit"
-                                onClick={() => dispatchAction("login")}
+                                onClick={() => dispatchAction()}
                                 loading={isLoading}
                             >
                                 Ingresar
@@ -125,7 +118,7 @@ const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) =>
                     <span>O ingresa rápido con tus cuentas</span>
                     <div className="another-options">
                         <div className="facebook">
-                            <Button className="" onClick={signInWithFacebook} loading={fbLoading}>
+                            <Button className="" onClick={()=> signInWithFacebook()} loading={fbLoading}>
                                 <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M8.21875 9H5.875V16H2.75V9H0.1875V6.125H2.75V3.90625C2.75 1.40625 4.25 0 6.53125 0C7.625 0 8.78125 0.21875 8.78125 0.21875V2.6875H7.5C6.25 2.6875 5.875 3.4375 5.875 4.25V6.125H8.65625L8.21875 9Z" fill="#5C30A1" />
                                 </svg>
@@ -133,7 +126,7 @@ const Login = ({ signInWithGoogle, gLoading, signInWithFacebook, fbLoading }) =>
                             </Button>
                         </div>
                         <div className="google">
-                            <Button className="" onClick={signInWithGoogle} loading={gLoading}>
+                            <Button className="" onClick={()=> signInWithGoogle()} loading={gLoading}>
                                 <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.125 8.1875C16.125 12.625 13.0938 15.75 8.625 15.75C4.3125 15.75 0.875 12.3125 0.875 8C0.875 3.71875 4.3125 0.25 8.625 0.25C10.6875 0.25 12.4688 1.03125 13.8125 2.28125L11.6875 4.3125C8.9375 1.65625 3.8125 3.65625 3.8125 8C3.8125 10.7188 5.96875 12.9062 8.625 12.9062C11.6875 12.9062 12.8438 10.7188 13 9.5625H8.625V6.90625H16C16.0625 7.3125 16.125 7.6875 16.125 8.1875Z" fill="#5C30A1" />
                                 </svg>
