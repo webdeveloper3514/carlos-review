@@ -63,7 +63,7 @@ const RouteList = () => {
                 auth?.token ? (
                     <Profile />
                 ) : (
-                    <Navigate replace to={PATH_LIST.USER.L} />
+                    <Navigate replace to={PATH_LIST.USER.LOGIN} />
                 )
             }
             />
